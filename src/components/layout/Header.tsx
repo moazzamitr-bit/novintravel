@@ -1,0 +1,128 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { Headphones, Menu, X } from "lucide-react";
+import { mainNav, siteConfig } from "@/data/homepage";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
+
+export function Header() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-novin-border/80 bg-white/95 backdrop-blur-md">
+      <div className="container-page">
+        <div className="flex h-[78px] items-center justify-between gap-4 lg:h-[80px]">
+          <div className="flex min-w-0 items-center gap-6 xl:gap-8">
+            <Link
+              href="/"
+              className="relative flex h-12 w-[168px] shrink-0 items-center sm:h-[52px] sm:w-[190px]"
+              aria-label={siteConfig.name}
+            >
+              <Image
+                src="/brand/logo-horizontal.png"
+                alt={siteConfig.name}
+                fill
+                priority
+                className="object-contain object-right"
+                sizes="190px"
+              />
+            </Link>
+
+            <nav
+              aria-label="منوی اصلی"
+              className="hidden items-center gap-1 xl:flex"
+            >
+              {mainNav.map((item) => {
+                const active = item.id === "home";
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className={cn(
+                      "relative whitespace-nowrap px-2.5 py-2 text-[13.5px] font-medium transition-colors duration-200",
+                      active
+                        ? "text-novin-orange"
+                        : "text-novin-text-secondary hover:text-novin-purple",
+                    )}
+                  >
+                    {item.label}
+                    {active ? (
+                      <span className="absolute inset-x-2 -bottom-[1px] h-[2px] rounded-full bg-novin-orange" />
+                    ) : null}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href={siteConfig.phoneHref}
+              className="hidden items-center gap-2 rounded-xl px-2 py-2 text-novin-purple transition-colors hover:bg-novin-bg-secondary md:inline-flex"
+            >
+              <Headphones className="h-[18px] w-[18px]" aria-hidden />
+              <span className="text-[14px] font-semibold tracking-wide" dir="ltr">
+                {siteConfig.phone}
+              </span>
+            </a>
+
+            <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+              ورود / ثبت‌نام
+            </Button>
+
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-novin-border text-novin-purple xl:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? "بستن منو" : "باز کردن منو"}
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {open ? (
+        <div
+          id="mobile-nav"
+          className="border-t border-novin-border bg-white xl:hidden"
+        >
+          <nav className="container-page flex flex-col gap-1 py-4" aria-label="منوی موبایل">
+            {mainNav.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "rounded-xl px-3 py-3 text-[15px] font-medium",
+                  item.id === "home"
+                    ? "bg-novin-bg-secondary text-novin-orange"
+                    : "text-novin-text-secondary hover:bg-novin-bg-secondary hover:text-novin-purple",
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="mt-2 flex flex-col gap-2 border-t border-novin-border pt-3">
+              <a
+                href={siteConfig.phoneHref}
+                className="inline-flex items-center gap-2 px-3 py-2 text-novin-purple"
+              >
+                <Headphones className="h-4 w-4" />
+                <span dir="ltr">{siteConfig.phone}</span>
+              </a>
+              <Button variant="outline" className="w-full">
+                ورود / ثبت‌نام
+              </Button>
+            </div>
+          </nav>
+        </div>
+      ) : null}
+    </header>
+  );
+}

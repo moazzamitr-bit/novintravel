@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-novin-purple: #4f2f7c;
+  --color-novin-purple-dark: #3d2460;
+  --color-novin-purple-deep: #2c1a4a;
+  --color-novin-purple-soft: #6b4a96;
+  --color-novin-orange: #f84209;
+  --color-novin-orange-hover: #e03a06;
+  --color-novin-bg: #ffffff;
+  --color-novin-bg-secondary: #f8f8fb;
+  --color-novin-border: #e8e7ee;
+  --color-novin-text: #201a2d;
+  --color-novin-text-secondary: #706b7a;
+  --color-novin-text-muted: #9994a3;
+  --color-novin-surface: #ffffff;
+  --shadow-card: 0 8px 30px rgba(50, 35, 80, 0.06);
+  --shadow-search: 0 20px 60px rgba(45, 30, 70, 0.14);
+  --shadow-soft: 0 4px 16px rgba(50, 35, 80, 0.08);
+  --font-sans: var(--font-vazirmatn), "Tahoma", "Segoe UI", sans-serif;
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-container: 22px;
+  --max-width-page: 1400px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-novin-bg text-novin-text antialiased;
+    font-family: var(--font-sans);
+    line-height: 1.8;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-novin-purple) 18%, white);
+    color: var(--color-novin-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-novin-purple);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10 xl:px-12;
+  }
+
+  .section-spacing {
+    @apply py-12 sm:py-16 lg:py-[88px];
+  }
+}
