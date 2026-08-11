@@ -18,12 +18,24 @@ import {
   defaultSearchState,
   validateSearch,
   type SearchErrors,
+  type ServiceType,
   type TravelSearchState,
 } from "./types";
 
-export function TravelSearch() {
+interface TravelSearchProps {
+  initialService?: ServiceType;
+  embedded?: boolean;
+}
+
+export function TravelSearch({
+  initialService = "flight",
+  embedded = false,
+}: TravelSearchProps) {
   const router = useRouter();
-  const [state, setState] = useState<TravelSearchState>(defaultSearchState);
+  const [state, setState] = useState<TravelSearchState>({
+    ...defaultSearchState,
+    serviceType: initialService,
+  });
   const [errors, setErrors] = useState<SearchErrors>({});
   const [isPending, startTransition] = useTransition();
 
@@ -75,12 +87,17 @@ export function TravelSearch() {
   return (
     <section
       aria-label="جستجوی سفر"
-      className="relative z-30 -mt-[72px] sm:-mt-24 lg:-mt-[108px]"
+      className={cn(
+        "relative z-30",
+        embedded
+          ? "mt-0"
+          : "-mt-[72px] sm:-mt-24 lg:-mt-[108px]",
+      )}
     >
-      <div className="container-page">
+      <div className={embedded ? undefined : "container-page"}>
         <form
           onSubmit={handleSubmit}
-          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-white/70 bg-white/95 shadow-search ring-1 ring-[color-mix(in_srgb,var(--color-novin-purple)_8%,transparent)] backdrop-blur-sm"
+          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-novin-border bg-white shadow-search"
         >
           <div className="overflow-hidden rounded-t-[24px]">
             <SearchTabs

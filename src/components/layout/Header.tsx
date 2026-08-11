@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Headphones, Menu, X } from "lucide-react";
 import { mainNav, siteConfig } from "@/data/homepage";
@@ -10,6 +11,12 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-novin-border/70 bg-white/90 shadow-[0_1px_0_rgba(50,35,80,0.03)] backdrop-blur-xl">
@@ -36,7 +43,7 @@ export function Header() {
               className="hidden items-center gap-1 xl:flex"
             >
               {mainNav.map((item) => {
-                const active = item.id === "home";
+                const active = isActive(item.href);
                 return (
                   <Link
                     key={item.id}
@@ -92,7 +99,10 @@ export function Header() {
           id="mobile-nav"
           className="border-t border-novin-border bg-white xl:hidden"
         >
-          <nav className="container-page flex flex-col gap-1 py-4" aria-label="منوی موبایل">
+          <nav
+            className="container-page flex flex-col gap-1 py-4"
+            aria-label="منوی موبایل"
+          >
             {mainNav.map((item) => (
               <Link
                 key={item.id}
@@ -100,7 +110,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className={cn(
                   "rounded-xl px-3 py-3 text-[15px] font-medium",
-                  item.id === "home"
+                  isActive(item.href)
                     ? "bg-novin-bg-secondary text-novin-orange"
                     : "text-novin-text-secondary hover:bg-novin-bg-secondary hover:text-novin-purple",
                 )}
