@@ -16,7 +16,6 @@ export function PopularDestinations() {
     const node = scrollerRef.current;
     if (!node) return;
     const amount = 280;
-    // In RTL, scrollLeft behavior can be negative depending on browser.
     node.scrollBy({
       left: direction === "next" ? -amount : amount,
       behavior: "smooth",
@@ -24,7 +23,10 @@ export function PopularDestinations() {
   }
 
   return (
-    <section className="container-page section-spacing" aria-label="مقاصد محبوب پرواز">
+    <section
+      className="container-page section-spacing"
+      aria-label="مقاصد محبوب پرواز"
+    >
       <SectionHeader
         title="مقاصد محبوب پرواز"
         actionLabel="مشاهده همه"
@@ -36,7 +38,7 @@ export function PopularDestinations() {
           type="button"
           aria-label="مقاصد بعدی"
           onClick={() => scrollByCard("next")}
-          className="absolute right-0 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-novin-border bg-white text-novin-purple shadow-soft transition hover:-translate-y-[calc(50%+2px)] md:inline-flex"
+          className="absolute right-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-novin-border bg-white/95 text-novin-purple shadow-soft backdrop-blur transition hover:-translate-y-[calc(50%+2px)] hover:border-novin-purple/30 md:inline-flex"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
@@ -44,7 +46,7 @@ export function PopularDestinations() {
           type="button"
           aria-label="مقاصد قبلی"
           onClick={() => scrollByCard("prev")}
-          className="absolute left-0 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-novin-border bg-white text-novin-purple shadow-soft transition hover:-translate-y-[calc(50%+2px)] md:inline-flex"
+          className="absolute left-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-novin-border bg-white/95 text-novin-purple shadow-soft backdrop-blur transition hover:-translate-y-[calc(50%+2px)] hover:border-novin-purple/30 md:inline-flex"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
@@ -57,21 +59,22 @@ export function PopularDestinations() {
             <Link
               key={destination.id}
               href={destination.href}
-              className="group w-[250px] shrink-0 sm:w-[270px]"
+              className="group w-[250px] shrink-0 focus-visible:outline-none sm:w-[280px]"
             >
-              <article className="overflow-hidden rounded-[16px] border border-novin-border bg-white transition-all duration-200 hover:-translate-y-[3px] hover:shadow-card">
+              <article className="overflow-hidden rounded-[18px] border border-novin-border bg-white transition-all duration-200 hover:-translate-y-[3px] hover:shadow-card group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={destination.image}
                     alt={destination.city}
                     fill
                     loading="lazy"
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    sizes="270px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                    sizes="280px"
                   />
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <Badge
                     tone={destination.type === "domestic" ? "purple" : "sky"}
-                    className="absolute right-3 top-3"
+                    className="absolute right-3 top-3 shadow-soft"
                   >
                     {destination.type === "domestic" ? "داخلی" : "خارجی"}
                   </Badge>

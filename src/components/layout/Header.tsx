@@ -12,7 +12,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-novin-border/80 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-novin-border/70 bg-white/90 shadow-[0_1px_0_rgba(50,35,80,0.03)] backdrop-blur-xl">
       <div className="container-page">
         <div className="flex h-[78px] items-center justify-between gap-4 lg:h-[80px]">
           <div className="flex min-w-0 items-center gap-6 xl:gap-8">

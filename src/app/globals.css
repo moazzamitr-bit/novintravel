@@ -15,13 +15,35 @@
   --color-novin-text-muted: #9994a3;
   --color-novin-surface: #ffffff;
   --shadow-card: 0 8px 30px rgba(50, 35, 80, 0.06);
-  --shadow-search: 0 20px 60px rgba(45, 30, 70, 0.14);
+  --shadow-search: 0 22px 64px rgba(45, 30, 70, 0.16);
   --shadow-soft: 0 4px 16px rgba(50, 35, 80, 0.08);
   --font-sans: var(--font-vazirmatn), "Tahoma", "Segoe UI", sans-serif;
   --radius-control: 10px;
   --radius-card: 16px;
   --radius-container: 22px;
   --max-width-page: 1400px;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-hero-ken: hero-ken 18s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-ken {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @layer base {
@@ -64,5 +86,13 @@
 
   .section-spacing {
     @apply py-12 sm:py-16 lg:py-[88px];
+  }
+
+  .animate-fade-up {
+    animation: var(--animate-fade-up);
+  }
+
+  .animate-hero-ken {
+    animation: var(--animate-hero-ken);
   }
 }

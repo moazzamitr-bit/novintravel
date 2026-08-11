@@ -4,7 +4,13 @@ import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { BusSearchForm, HotelSearchForm, StaySearchForm, TourSearchForm, TrainSearchForm } from "./HotelSearchForm";
+import {
+  BusSearchForm,
+  HotelSearchForm,
+  StaySearchForm,
+  TourSearchForm,
+  TrainSearchForm,
+} from "./HotelSearchForm";
 import { FlightSearchForm } from "./FlightSearchForm";
 import { SearchTabs } from "./SearchTabs";
 import {
@@ -22,72 +28,35 @@ export function TravelSearch() {
   const [isPending, startTransition] = useTransition();
 
   const form = useMemo(() => {
+    const onChange = (patch: Partial<TravelSearchState>) => {
+      setErrors({});
+      setState((prev) => ({ ...prev, ...patch }));
+    };
+
     switch (state.serviceType) {
       case "hotel":
         return (
-          <HotelSearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <HotelSearchForm state={state} errors={errors} onChange={onChange} />
         );
       case "tour":
         return (
-          <TourSearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <TourSearchForm state={state} errors={errors} onChange={onChange} />
         );
       case "stay":
         return (
-          <StaySearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <StaySearchForm state={state} errors={errors} onChange={onChange} />
         );
       case "train":
         return (
-          <TrainSearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <TrainSearchForm state={state} errors={errors} onChange={onChange} />
         );
       case "bus":
         return (
-          <BusSearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <BusSearchForm state={state} errors={errors} onChange={onChange} />
         );
       default:
         return (
-          <FlightSearchForm
-            state={state}
-            errors={errors}
-            onChange={(patch) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, ...patch }));
-            }}
-          />
+          <FlightSearchForm state={state} errors={errors} onChange={onChange} />
         );
     }
   }, [state, errors]);
@@ -106,12 +75,12 @@ export function TravelSearch() {
   return (
     <section
       aria-label="جستجوی سفر"
-      className="relative z-20 -mt-16 sm:-mt-20 lg:-mt-24"
+      className="relative z-20 -mt-[72px] sm:-mt-24 lg:-mt-[108px]"
     >
       <div className="container-page">
         <form
           onSubmit={handleSubmit}
-          className="mx-auto max-w-[1320px] overflow-hidden rounded-[22px] border border-novin-border bg-white shadow-search"
+          className="mx-auto max-w-[1320px] overflow-hidden rounded-[24px] border border-white/70 bg-white/95 shadow-search ring-1 ring-[color-mix(in_srgb,var(--color-novin-purple)_8%,transparent)] backdrop-blur-sm"
         >
           <SearchTabs
             value={state.serviceType}
@@ -132,7 +101,7 @@ export function TravelSearch() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {state.serviceType === "flight" ? (
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
-                  <label className="inline-flex items-center gap-2 text-[13px] text-novin-text-secondary">
+                  <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
                     <input
                       type="checkbox"
                       checked={state.directOnly}
@@ -146,7 +115,7 @@ export function TravelSearch() {
                     />
                     جستجوی پرواز مستقیم
                   </label>
-                  <label className="inline-flex items-center gap-2 text-[13px] text-novin-text-secondary">
+                  <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
                     <input
                       type="checkbox"
                       checked={state.oneWayTicketOnly}

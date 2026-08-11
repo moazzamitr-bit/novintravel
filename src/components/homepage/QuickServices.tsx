@@ -22,21 +22,31 @@ const icons = {
 
 export function QuickServices() {
   return (
-    <section className="container-page pt-10 sm:pt-14 lg:pt-16" aria-label="خدمات سریع">
+    <section
+      className="container-page pt-12 sm:pt-16 lg:pt-[72px]"
+      aria-label="خدمات سریع"
+    >
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
         {quickServices.map((service) => {
           const Icon = icons[service.icon];
           return (
-            <Link key={service.id} href={service.href} className="group">
+            <Link
+              key={service.id}
+              href={service.href}
+              className="group focus-visible:outline-none"
+            >
               <Card
                 interactive
-                className="flex h-full flex-col items-start gap-3 p-4 sm:p-5"
+                className="flex h-full flex-col items-start gap-3 p-4 sm:p-5 group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35"
               >
-                <IconBox size="sm" className="transition-transform duration-200 group-hover:scale-105">
+                <IconBox
+                  size="sm"
+                  className="transition-transform duration-200 group-hover:scale-105 group-hover:bg-[color-mix(in_srgb,var(--color-novin-orange)_10%,white)] group-hover:text-novin-orange"
+                >
                   <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </IconBox>
                 <div>
-                  <h3 className="text-[15px] font-bold text-novin-text">
+                  <h3 className="text-[15px] font-bold text-novin-text transition-colors group-hover:text-novin-purple">
                     {service.title}
                   </h3>
                   <p className="mt-1 text-[12.5px] leading-6 text-novin-text-secondary">

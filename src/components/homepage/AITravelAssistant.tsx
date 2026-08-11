@@ -13,7 +13,7 @@ export function AITravelAssistant() {
     <section className="container-page section-spacing !pt-0" aria-labelledby="ai-travel-title">
       <div className="overflow-hidden rounded-[24px] border border-[color-mix(in_srgb,var(--color-novin-purple)_16%,white)] bg-[linear-gradient(135deg,#f7f4fb_0%,#ffffff_48%,#f3eef9_100%)] px-5 py-8 sm:px-8 sm:py-10 lg:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[13px] font-medium text-novin-purple shadow-soft">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-novin-purple)_12%,white)] bg-white px-3 py-1.5 text-[13px] font-medium text-novin-purple shadow-soft">
             <Sparkles className="h-4 w-4 text-novin-orange" />
             دستیار هوشمند سفر
           </div>
