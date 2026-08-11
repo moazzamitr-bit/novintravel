@@ -15,7 +15,7 @@ export function Hero() {
         alt="نمای بال هواپیما در غروب آفتاب بالای ابرها"
         fill
         priority
-        className="object-cover object-[72%_center] sm:object-[68%_center] motion-safe:animate-hero-ken"
+        className="object-cover object-[58%_42%] sm:object-[55%_40%] motion-safe:animate-hero-ken"
         sizes="100vw"
       />
 
