@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ContentPage } from "@/components/layout/ContentPage";
+import { CorporateDemoPage } from "@/components/demo/ContentDemoPages";
 import { contentPages } from "@/data/pages";
 
 const page = contentPages.corporate;
@@ -10,17 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const highlights = "highlights" in page ? Array.from(page.highlights as readonly string[]) : [];
-
-  return (
-    <ContentPage
-      title={page.title}
-      description={page.description}
-      breadcrumbLabel={page.breadcrumbLabel}
-      features={page.features.map((item) => ({ ...item }))}
-      highlights={highlights}
-      ctaLabel={page.ctaLabel}
-      ctaHref={page.ctaHref}
-    />
-  );
+  return <CorporateDemoPage />;
 }
