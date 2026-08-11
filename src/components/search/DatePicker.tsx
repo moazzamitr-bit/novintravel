@@ -45,7 +45,10 @@ export function DatePicker({
   }, []);
 
   return (
-    <div ref={rootRef} className="relative min-w-0 flex-1">
+    <div
+      ref={rootRef}
+      className={cn("relative min-w-0 flex-1 overflow-visible", open && "z-50")}
+    >
       <button
         type="button"
         disabled={disabled}
@@ -86,7 +89,7 @@ export function DatePicker({
           id={panelId}
           role="dialog"
           aria-label={label}
-          className="absolute inset-x-0 top-[calc(100%-6px)] z-40 rounded-2xl border border-novin-border bg-white p-4 shadow-search"
+          className="absolute inset-x-0 top-[calc(100%-6px)] z-50 rounded-2xl border border-novin-border bg-white p-4 shadow-search"
         >
           <label className="mb-2 block text-xs text-novin-text-secondary">
             تاریخ شمسی (YYYY/MM/DD)

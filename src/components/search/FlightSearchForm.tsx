@@ -77,7 +77,7 @@ export function FlightSearchForm({
       </div>
 
       <div className="overflow-visible rounded-2xl border border-novin-border">
-        <div className="flex flex-col lg:flex-row lg:items-stretch">
+        <div className="relative z-10 flex flex-col overflow-visible lg:flex-row lg:items-stretch">
           <div className="relative flex min-w-0 flex-[1.35] flex-col sm:flex-row">
             <DestinationSelector
               label="مبدا"

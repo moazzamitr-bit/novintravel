@@ -77,7 +77,10 @@ export function PassengerSelector({ value, onChange }: PassengerSelectorProps) {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative min-w-0 flex-1">
+    <div
+      ref={rootRef}
+      className={cn("relative min-w-0 flex-1 overflow-visible", open && "z-50")}
+    >
       <button
         type="button"
         aria-haspopup="dialog"
@@ -100,7 +103,7 @@ export function PassengerSelector({ value, onChange }: PassengerSelectorProps) {
           id={panelId}
           role="dialog"
           aria-label="انتخاب مسافران و کلاس"
-          className="absolute left-0 top-[calc(100%-6px)] z-40 w-[min(320px,90vw)] rounded-2xl border border-novin-border bg-white p-4 shadow-search"
+          className="absolute left-0 top-[calc(100%-6px)] z-50 w-[min(320px,90vw)] rounded-2xl border border-novin-border bg-white p-4 shadow-search"
         >
           <Counter
             label="بزرگسال"

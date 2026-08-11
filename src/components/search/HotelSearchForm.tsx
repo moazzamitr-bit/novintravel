@@ -62,7 +62,7 @@ interface FormProps {
 function FieldShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="overflow-visible rounded-2xl border border-novin-border">
-      <div className="flex flex-col divide-y divide-novin-border lg:flex-row lg:divide-x lg:divide-y-0 lg:divide-novin-border">
+      <div className="relative z-10 flex flex-col divide-y divide-novin-border overflow-visible lg:flex-row lg:divide-x lg:divide-y-0 lg:divide-novin-border">
         {children}
       </div>
     </div>

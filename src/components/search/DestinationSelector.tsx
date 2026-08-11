@@ -51,7 +51,10 @@ export function DestinationSelector({
   });
 
   return (
-    <div ref={rootRef} className="relative min-w-0 flex-1">
+    <div
+      ref={rootRef}
+      className={cn("relative min-w-0 flex-1 overflow-visible", open && "z-50")}
+    >
       <button
         type="button"
         aria-haspopup="listbox"
@@ -98,7 +101,7 @@ export function DestinationSelector({
         <div
           id={listId}
           role="listbox"
-          className="absolute inset-x-0 top-[calc(100%-6px)] z-40 origin-top scale-100 rounded-2xl border border-novin-border bg-white p-2 shadow-search animate-in fade-in zoom-in-95"
+          className="absolute inset-x-0 top-[calc(100%-6px)] z-50 origin-top rounded-2xl border border-novin-border bg-white p-2 shadow-search"
         >
           <input
             value={query}

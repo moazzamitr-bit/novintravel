@@ -75,24 +75,26 @@ export function TravelSearch() {
   return (
     <section
       aria-label="جستجوی سفر"
-      className="relative z-20 -mt-[72px] sm:-mt-24 lg:-mt-[108px]"
+      className="relative z-30 -mt-[72px] sm:-mt-24 lg:-mt-[108px]"
     >
       <div className="container-page">
         <form
           onSubmit={handleSubmit}
-          className="mx-auto max-w-[1320px] overflow-hidden rounded-[24px] border border-white/70 bg-white/95 shadow-search ring-1 ring-[color-mix(in_srgb,var(--color-novin-purple)_8%,transparent)] backdrop-blur-sm"
+          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-white/70 bg-white/95 shadow-search ring-1 ring-[color-mix(in_srgb,var(--color-novin-purple)_8%,transparent)] backdrop-blur-sm"
         >
-          <SearchTabs
-            value={state.serviceType}
-            onChange={(serviceType) => {
-              setErrors({});
-              setState((prev) => ({ ...prev, serviceType }));
-            }}
-          />
+          <div className="overflow-hidden rounded-t-[24px]">
+            <SearchTabs
+              value={state.serviceType}
+              onChange={(serviceType) => {
+                setErrors({});
+                setState((prev) => ({ ...prev, serviceType }));
+              }}
+            />
+          </div>
 
           <div
             className={cn(
-              "space-y-4 p-4 transition-opacity duration-200 sm:p-5 lg:p-6",
+              "relative z-40 space-y-4 overflow-visible p-4 transition-opacity duration-200 sm:p-5 lg:p-6",
               isPending && "opacity-70",
             )}
           >
