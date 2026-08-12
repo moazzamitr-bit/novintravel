@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 export function PromoBanners() {
@@ -20,11 +19,9 @@ export function PromoBanners() {
               <p className="mt-2 text-[15px] text-white/85">
                 تا ۱۲ ماه بدون پیش پرداخت
               </p>
-              <Link href="/installment" className="mt-5 inline-flex">
-                <Button variant="white" size="md">
-                  اطلاعات بیشتر
-                </Button>
-              </Link>
+              <Button href="/installment" variant="white" size="md" className="mt-5">
+                اطلاعات بیشتر
+              </Button>
             </div>
             <div className="relative mx-auto flex h-28 w-28 items-center justify-center sm:mx-0 sm:h-36 sm:w-36">
               <div className="absolute inset-0 rotate-12 rounded-[28px] bg-gradient-to-br from-novin-orange to-[#ff7a3d] shadow-[0_20px_40px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:rotate-[16deg]" />
@@ -56,15 +53,14 @@ export function PromoBanners() {
             <p className="mt-2 max-w-sm text-[15px] text-white/85">
               با بهترین خدمات و قیمت
             </p>
-            <Link href="/tours" className="mt-5 inline-flex">
-              <Button
-                variant="white"
-                size="md"
-                className="border border-white/80 bg-white/95"
-              >
-                مشاهده تورها
-              </Button>
-            </Link>
+            <Button
+              href="/tours"
+              variant="white"
+              size="md"
+              className="mt-5 border border-white/80 bg-white/95"
+            >
+              مشاهده تورها
+            </Button>
           </div>
         </article>
       </div>

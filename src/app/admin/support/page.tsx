@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { adminSupport } from "@/data/panels";
 
@@ -32,9 +32,13 @@ export default function AdminSupportPage() {
               <span className="rounded-full bg-novin-bg-secondary px-3 py-1 text-[12px] text-novin-purple">
                 {statusLabel[ticket.status]}
               </span>
-              <Button size="sm" variant="outline">
+              <ActionButton
+                size="sm"
+                variant="outline"
+                message={`پاسخ برای ${ticket.id} ثبت شد`}
+              >
                 پاسخ
-              </Button>
+              </ActionButton>
             </div>
           </article>
         ))}

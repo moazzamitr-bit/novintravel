@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CreditCard, ShieldCheck, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -160,7 +159,22 @@ export function PaymentStep({ item }: { item: BookingItem }) {
                 className="h-11 flex-1 rounded-xl border border-novin-border px-3 text-[14px]"
                 dir="ltr"
               />
-              <Button variant="outline" type="button">
+              <Button
+                variant="outline"
+                type="button"
+                onClick={() => {
+                  if (!discount.trim()) {
+                    setError("کد تخفیف را وارد کنید");
+                    return;
+                  }
+                  setError("");
+                  window.dispatchEvent(
+                    new CustomEvent("novin-toast", {
+                      detail: `کد ${discount} اعمال شد (دمو)`,
+                    }),
+                  );
+                }}
+              >
                 ثبت
               </Button>
             </div>
@@ -192,11 +206,9 @@ export function PaymentStep({ item }: { item: BookingItem }) {
             <Button size="lg" onClick={pay} disabled={loading}>
               {loading ? "در حال انتقال..." : "تایید و پرداخت"}
             </Button>
-            <Link href={buildBookingHref("passengers", item)}>
-              <Button size="lg" variant="outline">
-                بازگشت
-              </Button>
-            </Link>
+            <Button href={buildBookingHref("passengers", item)} size="lg" variant="outline">
+              بازگشت
+            </Button>
           </div>
         </div>
 

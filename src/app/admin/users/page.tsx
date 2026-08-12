@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { adminUsers } from "@/data/panels";
 import { formatToman } from "@/lib/utils";
@@ -39,9 +40,22 @@ export default function AdminUsersPage() {
                   </span>
                 </td>
                 <td className="py-3">
-                  <Button size="sm" variant="outline">
-                    جزئیات
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button href="/admin/orders" size="sm" variant="outline">
+                      سفارش‌ها
+                    </Button>
+                    <ActionButton
+                      size="sm"
+                      variant="ghost"
+                      message={
+                        user.status === "active"
+                          ? `${user.name} مسدود شد`
+                          : `${user.name} فعال شد`
+                      }
+                    >
+                      {user.status === "active" ? "مسدود" : "فعال‌سازی"}
+                    </ActionButton>
+                  </div>
                 </td>
               </tr>
             ))}

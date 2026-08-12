@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { CheckCircle2, Download, Home } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   BOOKING_STORAGE_KEY,
@@ -78,21 +78,17 @@ export function SuccessStep({
         </div>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Button size="lg">
+            <ActionButton size="lg" message="دانلود بلیط/واچر شبیه‌سازی شد">
               <Download className="h-4 w-4" />
               دانلود بلیط / واچر
+            </ActionButton>
+            <Button href="/account/orders" size="lg" variant="outline">
+              مشاهده در پنل کاربری
             </Button>
-            <Link href="/account/orders">
-              <Button size="lg" variant="outline">
-                مشاهده در پنل کاربری
-              </Button>
-            </Link>
-            <Link href="/">
-              <Button size="lg" variant="ghost">
-                <Home className="h-4 w-4" />
-                صفحه اصلی
-              </Button>
-            </Link>
+            <Button href="/" size="lg" variant="ghost">
+              <Home className="h-4 w-4" />
+              صفحه اصلی
+            </Button>
           </div>
       </div>
     </div>

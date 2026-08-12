@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PassengersStep } from "@/components/booking/PassengersStep";
 import { Button } from "@/components/ui/Button";
 import { resolveBookingItem } from "@/lib/booking";
@@ -28,9 +27,9 @@ export default async function PassengersBookingPage({
           <p className="mt-3 text-[14px] text-novin-text-secondary">
             لطفاً دوباره از نتایج جستجو یک گزینه انتخاب کنید.
           </p>
-          <Link href="/flights" className="mt-6 inline-flex">
-            <Button>بازگشت به پروازها</Button>
-          </Link>
+          <Button href="/flights" className="mt-6">
+            بازگشت به پروازها
+          </Button>
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { formatToman } from "@/lib/utils";
 
@@ -72,11 +71,9 @@ export function InstallmentCalculatorDemo() {
           <li>پوشش پرواز، هتل و تور</li>
           <li>بررسی اعتبار آنلاین در کمتر از چند دقیقه</li>
         </ul>
-        <Link href="/installment/credit-check" className="mt-8 inline-flex">
-          <Button variant="white" size="lg">
-            بررسی اعتبار سفر
-          </Button>
-        </Link>
+        <Button href="/installment/credit-check" variant="white" size="lg" className="mt-8">
+          بررسی اعتبار سفر
+        </Button>
       </div>
     </div>
   );

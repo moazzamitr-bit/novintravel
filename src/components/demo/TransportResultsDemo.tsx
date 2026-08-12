@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Bus, TrainFront } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -68,14 +67,15 @@ function TransportCards({
               <p className="text-[18px] font-bold text-novin-purple">
                 {priceLabel(item.price)}
               </p>
-              <Link
+              <Button
                 href={buildBookingHref("passengers", {
                   type: mode,
                   id: item.id,
                 })}
+                size="sm"
               >
-                <Button size="sm">انتخاب و خرید</Button>
-              </Link>
+                انتخاب و خرید
+              </Button>
             </div>
           </div>
         </article>

@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import {
   adminOrders,
@@ -7,21 +11,35 @@ import {
 } from "@/data/panels";
 import { formatToman } from "@/lib/utils";
 
+const filters = [
+  { id: "all", label: "همه" },
+  { id: "issued", label: "صادر شده" },
+  { id: "pending", label: "در انتظار" },
+  { id: "refunded", label: "استرداد" },
+] as const;
+
 export default function AdminOrdersPage() {
+  const [filter, setFilter] = useState<(typeof filters)[number]["id"]>("all");
+  const rows =
+    filter === "all"
+      ? adminOrders
+      : adminOrders.filter((order) => order.status === filter);
+
   return (
     <PanelCard title="مدیریت سفارش‌ها">
       <div className="mb-4 flex flex-wrap gap-2">
-        {["همه", "صادر شده", "در انتظار", "استرداد"].map((item, index) => (
+        {filters.map((item) => (
           <button
-            key={item}
+            key={item.id}
             type="button"
+            onClick={() => setFilter(item.id)}
             className={`rounded-full px-3 py-1.5 text-[12px] font-medium ${
-              index === 0
+              filter === item.id
                 ? "bg-novin-purple text-white"
                 : "bg-novin-bg-secondary text-novin-text-secondary"
             }`}
           >
-            {item}
+            {item.label}
           </button>
         ))}
       </div>
@@ -39,7 +57,7 @@ export default function AdminOrdersPage() {
             </tr>
           </thead>
           <tbody>
-            {adminOrders.map((order) => (
+            {rows.map((order) => (
               <tr key={order.id} className="border-b border-novin-border/70">
                 <td className="py-3 font-medium text-novin-purple" dir="ltr">
                   {order.id}
@@ -57,12 +75,20 @@ export default function AdminOrdersPage() {
                 </td>
                 <td className="py-3">
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline">
+                    <Button
+                      href={`/admin/orders/${order.id}`}
+                      size="sm"
+                      variant="outline"
+                    >
                       مشاهده
                     </Button>
-                    <Button size="sm" variant="ghost">
+                    <ActionButton
+                      size="sm"
+                      variant="ghost"
+                      message={`استرداد برای ${order.id} ثبت شد`}
+                    >
                       استرداد
-                    </Button>
+                    </ActionButton>
                   </div>
                 </td>
               </tr>

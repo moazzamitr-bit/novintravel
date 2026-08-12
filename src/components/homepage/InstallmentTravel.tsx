@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { installmentHighlights } from "@/data/homepage";
 import { Button } from "@/components/ui/Button";
@@ -37,9 +36,9 @@ export function InstallmentTravel() {
             ))}
           </ul>
 
-          <Link href="/installment/credit-check" className="mt-7 inline-flex">
-            <Button size="lg">بررسی اعتبار سفر</Button>
-          </Link>
+          <Button href="/installment/credit-check" size="lg" className="mt-7">
+            بررسی اعتبار سفر
+          </Button>
         </div>
 
         <div className="relative rounded-[22px] bg-[linear-gradient(160deg,#4f2f7c_0%,#6b4a96_55%,#f84209_140%)] p-6 text-white sm:p-8">

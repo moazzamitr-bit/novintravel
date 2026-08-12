@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { PageHero } from "@/components/layout/PageHero";
@@ -68,11 +67,13 @@ export function ContentPage({
         {children}
 
         <div className="mt-10">
-          <Link href={ctaHref} className="inline-flex">
-            <Button variant={ctaHref === "/" ? "outline" : "primary"} size="lg">
-              {ctaLabel}
-            </Button>
-          </Link>
+          <Button
+            href={ctaHref}
+            variant={ctaHref === "/" ? "outline" : "primary"}
+            size="lg"
+          >
+            {ctaLabel}
+          </Button>
         </div>
       </div>
     </>

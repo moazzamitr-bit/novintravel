@@ -1,3 +1,6 @@
+"use client";
+
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard, StatCard } from "@/components/panel/PanelShell";
 
 export default function AdminReportsPage() {
@@ -8,7 +11,7 @@ export default function AdminReportsPage() {
         <StatCard label="میانگین مبلغ سفارش" value="۶٫۲M" />
         <StatCard label="NPS پشتیبانی" value="۶۸" />
       </div>
-      <PanelCard title="گزارش‌های آماده دانلود (دمو)">
+      <PanelCard title="گزارش‌های آماده دانلود">
         <ul className="space-y-3">
           {[
             "فروش روزانه پرواز",
@@ -21,12 +24,13 @@ export default function AdminReportsPage() {
               className="flex items-center justify-between rounded-2xl bg-novin-bg-secondary px-4 py-3 text-[14px]"
             >
               <span className="text-novin-text">{item}</span>
-              <button
-                type="button"
-                className="text-[13px] font-medium text-novin-purple hover:underline"
+              <ActionButton
+                size="sm"
+                variant="ghost"
+                message={`دانلود «${item}» شروع شد`}
               >
                 دانلود CSV
-              </button>
+              </ActionButton>
             </li>
           ))}
         </ul>

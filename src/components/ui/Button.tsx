@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, forwardRef } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "white";
@@ -7,6 +8,7 @@ type ButtonSize = "sm" | "md" | "lg";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  href?: string;
 }
 
 const variants: Record<ButtonVariant, string> = {
@@ -27,6 +29,9 @@ const sizes: Record<ButtonSize, string> = {
   lg: "h-[52px] px-8 text-base rounded-xl min-w-[180px]",
 };
 
+const baseClass =
+  "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-novin-purple/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -35,23 +40,38 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "md",
       type = "button",
       disabled,
+      href,
+      children,
+      onClick,
       ...props
     },
     ref,
   ) => {
+    const classes = cn(baseClass, variants[variant], sizes[size], className);
+
+    if (href && !disabled) {
+      return (
+        <Link
+          href={href}
+          className={classes}
+          onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+        >
+          {children}
+        </Link>
+      );
+    }
+
     return (
       <button
         ref={ref}
         type={type}
         disabled={disabled}
-        className={cn(
-          "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-novin-purple/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          variants[variant],
-          sizes[size],
-          className,
-        )}
+        className={classes}
+        onClick={onClick}
         {...props}
-      />
+      >
+        {children}
+      </button>
     );
   },
 );

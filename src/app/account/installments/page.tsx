@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { accountInstallments } from "@/data/panels";
 import { formatToman } from "@/lib/utils";
@@ -20,7 +20,9 @@ export default function AccountInstallmentsPage() {
                   {item.months.toLocaleString("fa-IR")} قسط پرداخت شده
                 </p>
               </div>
-              <Button size="sm">پرداخت قسط</Button>
+              <ActionButton size="sm" message="قسط با موفقیت پرداخت شد (دمو)" successLabel="پرداخت شد">
+                پرداخت قسط
+              </ActionButton>
             </div>
             <div className="mt-4 h-2 overflow-hidden rounded-full bg-novin-bg-secondary">
               <div
@@ -28,7 +30,7 @@ export default function AccountInstallmentsPage() {
                 style={{ width: `${(item.paid / item.months) * 100}%` }}
               />
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3 text-[13px]">
+            <div className="mt-4 grid gap-3 text-[13px] sm:grid-cols-3">
               <div className="rounded-xl bg-novin-bg-secondary px-3 py-2">
                 <p className="text-novin-text-muted">کل مبلغ</p>
                 <p className="font-bold text-novin-text">{formatToman(item.total)}</p>

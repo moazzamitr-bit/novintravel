@@ -63,11 +63,9 @@ export function StayResultsDemo() {
                 <p className="text-[16px] font-bold text-novin-purple">
                   {priceLabel(stay.priceFrom)}
                 </p>
-                <Link href={`/stays/${stay.id}`}>
-                  <Button size="sm" variant="outline">
-                    جزئیات
-                  </Button>
-                </Link>
+                <Button href={`/stays/${stay.id}`} size="sm" variant="outline">
+                  جزئیات
+                </Button>
               </div>
             </div>
           </article>

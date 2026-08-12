@@ -1,15 +1,63 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { accountPassengers } from "@/data/panels";
 
 export default function AccountPassengersPage() {
+  const [passengers, setPassengers] = useState(accountPassengers);
+  const [showForm, setShowForm] = useState(false);
+  const [name, setName] = useState("");
+
+  function addPassenger() {
+    if (!name.trim()) {
+      window.dispatchEvent(
+        new CustomEvent("novin-toast", { detail: "نام مسافر را وارد کنید" }),
+      );
+      return;
+    }
+    setPassengers((prev) => [
+      ...prev,
+      {
+        id: `p${Date.now()}`,
+        name: name.trim(),
+        nationalId: "۰۰۰۰۰۰۰۰۰۰",
+        gender: "مرد",
+        birthDate: "۱۳۷۰/۰۱/۰۱",
+      },
+    ]);
+    setName("");
+    setShowForm(false);
+    window.dispatchEvent(
+      new CustomEvent("novin-toast", { detail: "مسافر اضافه شد" }),
+    );
+  }
+
   return (
     <PanelCard
       title="مسافران ذخیره‌شده"
-      action={<Button size="sm">افزودن مسافر</Button>}
+      action={
+        <Button size="sm" onClick={() => setShowForm((v) => !v)}>
+          {showForm ? "بستن فرم" : "افزودن مسافر"}
+        </Button>
+      }
     >
+      {showForm ? (
+        <div className="mb-4 flex flex-col gap-3 rounded-2xl border border-novin-border bg-novin-bg-secondary p-4 sm:flex-row">
+          <input
+            className="h-11 flex-1 rounded-xl border border-novin-border bg-white px-3 text-[14px]"
+            placeholder="نام و نام خانوادگی"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Button onClick={addPassenger}>ذخیره</Button>
+        </div>
+      ) : null}
+
       <div className="grid gap-3 md:grid-cols-2">
-        {accountPassengers.map((passenger) => (
+        {passengers.map((passenger) => (
           <article
             key={passenger.id}
             className="rounded-2xl border border-novin-border bg-novin-bg-secondary p-4"
@@ -30,12 +78,19 @@ export default function AccountPassengersPage() {
               </div>
             </dl>
             <div className="mt-4 flex gap-2">
-              <Button size="sm" variant="outline">
+              <ActionButton size="sm" variant="outline" message="فرم ویرایش باز شد (دمو)">
                 ویرایش
-              </Button>
-              <Button size="sm" variant="ghost">
+              </ActionButton>
+              <ActionButton
+                size="sm"
+                variant="ghost"
+                message={`${passenger.name} حذف شد`}
+                onClick={() =>
+                  setPassengers((prev) => prev.filter((p) => p.id !== passenger.id))
+                }
+              >
                 حذف
-              </Button>
+              </ActionButton>
             </div>
           </article>
         ))}

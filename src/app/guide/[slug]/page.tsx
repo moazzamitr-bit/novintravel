@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
@@ -66,12 +65,10 @@ export default async function GuideArticlePage({
           ))}
 
           <div className="flex flex-wrap gap-3 pt-4">
-            <Link href="/guide">
-              <Button variant="outline">بازگشت به راهنما</Button>
-            </Link>
-            <Link href="/flights">
-              <Button>جستجوی پرواز</Button>
-            </Link>
+            <Button href="/guide" variant="outline">
+              بازگشت به راهنما
+            </Button>
+            <Button href="/flights">جستجوی پرواز</Button>
           </div>
         </div>
       </article>

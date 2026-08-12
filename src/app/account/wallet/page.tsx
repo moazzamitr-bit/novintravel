@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard, StatCard } from "@/components/panel/PanelShell";
 import { accountWalletTx } from "@/data/panels";
 import { formatToman } from "@/lib/utils";
@@ -14,7 +15,11 @@ export default function AccountWalletPage() {
 
       <PanelCard
         title="تراکنش‌ها"
-        action={<Button size="sm">شارژ کیف پول</Button>}
+        action={
+          <ActionButton size="sm" message="درگاه شارژ کیف پول باز شد (دمو)" successLabel="ثبت شد">
+            شارژ کیف پول
+          </ActionButton>
+        }
       >
         <ul className="space-y-3">
           {accountWalletTx.map((tx) => (
@@ -37,6 +42,9 @@ export default function AccountWalletPage() {
             </li>
           ))}
         </ul>
+        <Button href="/wallet" variant="outline" className="mt-4">
+          صفحه عمومی کیف پول
+        </Button>
       </PanelCard>
     </div>
   );

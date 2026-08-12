@@ -337,11 +337,9 @@ export function PassengersStep({ item }: { item: BookingItem }) {
             <Button size="lg" onClick={continueToPayment}>
               ادامه فرآیند خرید
             </Button>
-            <Link href={item.backHref}>
-              <Button size="lg" variant="outline">
-                انصراف
-              </Button>
-            </Link>
+            <Button href={item.backHref} size="lg" variant="outline">
+              انصراف
+            </Button>
           </div>
         </div>
 

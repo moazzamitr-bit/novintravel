@@ -1,4 +1,8 @@
+"use client";
+
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { accountTickets } from "@/data/panels";
 
@@ -8,14 +12,49 @@ const statusMap: Record<string, string> = {
 };
 
 export default function AccountTicketsPage() {
+  const formRef = useRef<HTMLDivElement>(null);
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("");
+  const [tickets, setTickets] = useState(accountTickets);
+
+  function submitTicket() {
+    if (!subject.trim() || !body.trim()) {
+      window.dispatchEvent(
+        new CustomEvent("novin-toast", { detail: "موضوع و توضیحات را کامل کنید" }),
+      );
+      return;
+    }
+    setTickets((prev) => [
+      {
+        id: `TK-${2200 + prev.length + 1}`,
+        subject: subject.trim(),
+        status: "open",
+        updatedAt: "همین الان",
+      },
+      ...prev,
+    ]);
+    setSubject("");
+    setBody("");
+    window.dispatchEvent(
+      new CustomEvent("novin-toast", { detail: "تیکت با موفقیت ثبت شد" }),
+    );
+  }
+
   return (
     <div className="space-y-6">
       <PanelCard
         title="تیکت‌های پشتیبانی"
-        action={<Button size="sm">تیکت جدید</Button>}
+        action={
+          <Button
+            size="sm"
+            onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })}
+          >
+            تیکت جدید
+          </Button>
+        }
       >
         <div className="space-y-3">
-          {accountTickets.map((ticket) => (
+          {tickets.map((ticket) => (
             <article
               key={ticket.id}
               className="flex flex-col gap-3 rounded-2xl border border-novin-border p-4 sm:flex-row sm:items-center sm:justify-between"
@@ -39,19 +78,27 @@ export default function AccountTicketsPage() {
         </div>
       </PanelCard>
 
-      <PanelCard title="ثبت تیکت جدید (دمو)">
-        <div className="grid gap-3">
-          <input
-            className="h-11 rounded-xl border border-novin-border px-3 text-[14px]"
-            placeholder="موضوع"
-          />
-          <textarea
-            className="min-h-[120px] rounded-xl border border-novin-border px-3 py-3 text-[14px]"
-            placeholder="توضیحات"
-          />
-          <Button className="w-fit">ارسال</Button>
-        </div>
-      </PanelCard>
+      <div ref={formRef}>
+        <PanelCard title="ثبت تیکت جدید">
+          <div className="grid gap-3">
+            <input
+              className="h-11 rounded-xl border border-novin-border px-3 text-[14px]"
+              placeholder="موضوع"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+            <textarea
+              className="min-h-[120px] rounded-xl border border-novin-border px-3 py-3 text-[14px]"
+              placeholder="توضیحات"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+            />
+            <ActionButton className="w-fit" onClick={submitTicket} message="تیکت ارسال شد">
+              ارسال
+            </ActionButton>
+          </div>
+        </PanelCard>
+      </div>
     </div>
   );
 }

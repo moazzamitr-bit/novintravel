@@ -14,6 +14,7 @@ import {
   FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PageHero } from "@/components/layout/PageHero";
 import { FaqAccordionDemo } from "@/components/demo/FaqAccordionDemo";
 import { InstallmentCalculatorDemo } from "@/components/demo/InstallmentCalculatorDemo";
@@ -73,8 +74,10 @@ export function WalletDemoPage() {
               <span className="mr-2 text-[16px] font-medium">تومان</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button variant="white">شارژ کیف پول</Button>
-              <Button variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+              <Button href="/account/wallet" variant="white">
+                شارژ کیف پول
+              </Button>
+              <Button href="/account/wallet" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
                 انتقال
               </Button>
             </div>
@@ -166,7 +169,7 @@ export function ClubDemoPage() {
                 تا سطح طلایی ۲٬۵۲۰ امتیاز مانده
               </p>
             </div>
-            <Button>مشاهده پاداش‌ها</Button>
+            <Button href="/account">مشاهده پاداش‌ها</Button>
           </div>
           <div className="mt-6 h-3 overflow-hidden rounded-full bg-novin-bg-secondary">
             <div className="h-full w-[49%] rounded-full bg-[linear-gradient(90deg,#4f2f7c,#f84209)]" />
@@ -272,7 +275,7 @@ export function RefundDemoPage() {
                 <span className="rounded-full bg-novin-bg-secondary px-3 py-1 text-[12px] font-medium text-novin-purple">
                   {ticket.status}
                 </span>
-                <Button size="sm" variant="outline">
+                <Button href={`/account/orders`} size="sm" variant="outline">
                   جزئیات
                 </Button>
               </div>
@@ -281,9 +284,9 @@ export function RefundDemoPage() {
         </div>
 
         <div className="mt-8">
-          <Link href="/guide/refund-policy">
-            <Button variant="outline">قوانین استرداد</Button>
-          </Link>
+          <Button href="/guide/refund-policy" variant="outline">
+            قوانین استرداد
+          </Button>
         </div>
       </section>
     </>
@@ -346,9 +349,9 @@ export function InsuranceDemoPage() {
                   <li key={item}>• {item}</li>
                 ))}
               </ul>
-              <Button className="mt-6 w-full" variant={plan.featured ? "primary" : "outline"}>
+              <ActionButton className="mt-6 w-full" variant={plan.featured ? "primary" : "outline"} message={`طرح ${plan.name} انتخاب شد`}>
                 انتخاب طرح
-              </Button>
+              </ActionButton>
             </article>
           ))}
         </div>
@@ -455,9 +458,9 @@ export function CorporateDemoPage() {
           </div>
         </div>
 
-        <Link href="/corporate/request" className="mt-8 inline-flex">
-          <Button size="lg">درخواست پنل سازمانی</Button>
-        </Link>
+        <Button href="/corporate/request" size="lg" className="mt-8">
+          درخواست پنل سازمانی
+        </Button>
       </section>
     </>
   );
@@ -588,7 +591,9 @@ export function PartnersDemoPage() {
               <option>فناوری</option>
             </select>
           </div>
-          <Button className="mt-5">ارسال درخواست</Button>
+          <ActionButton className="mt-5" message="درخواست همکاری ارسال شد">
+            ارسال درخواست
+          </ActionButton>
         </div>
       </section>
     </>
@@ -643,7 +648,9 @@ export function CareersDemoPage() {
                   </p>
                 </div>
               </div>
-              <Button size="sm">ارسال رزومه</Button>
+              <ActionButton size="sm" message={`رزومه برای ${job.title} ارسال شد`}>
+                ارسال رزومه
+              </ActionButton>
             </article>
           ))}
         </div>
@@ -665,9 +672,9 @@ export function FaqDemoPage() {
       <section className="container-page section-spacing !pt-8">
         <FaqAccordionDemo />
         <div className="mt-8 text-center">
-          <Link href="/support" className="inline-flex">
-            <Button variant="outline">هنوز سوال دارید؟ پشتیبانی</Button>
-          </Link>
+          <Button href="/support" variant="outline">
+            هنوز سوال دارید؟ پشتیبانی
+          </Button>
         </div>
       </section>
     </>
@@ -716,7 +723,9 @@ export function SupportDemoPage() {
               className="min-h-[120px] rounded-xl border border-novin-border px-4 py-3 text-[14px]"
               placeholder="توضیحات مشکل یا درخواست"
             />
-            <Button className="w-fit">ارسال تیکت</Button>
+            <ActionButton className="w-fit" message="تیکت پشتیبانی ثبت شد">
+              ارسال تیکت
+            </ActionButton>
           </div>
         </div>
       </section>

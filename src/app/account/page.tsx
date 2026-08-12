@@ -19,17 +19,16 @@ export default function AccountDashboardPage() {
           سفارش‌ها، کیف پول و اقساط سفر را از اینجا مدیریت کنید. این نسخه دمو است.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link href="/flights">
-            <Button variant="white">رزرو پرواز جدید</Button>
-          </Link>
-          <Link href="/account/orders">
-            <Button
-              variant="outline"
-              className="border-white/40 bg-transparent text-white hover:bg-white/10"
-            >
-              مشاهده سفارش‌ها
-            </Button>
-          </Link>
+          <Button href="/flights" variant="white">
+            رزرو پرواز جدید
+          </Button>
+          <Button
+            href="/account/orders"
+            variant="outline"
+            className="border-white/40 bg-transparent text-white hover:bg-white/10"
+          >
+            مشاهده سفارش‌ها
+          </Button>
         </div>
       </div>
 

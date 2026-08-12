@@ -75,11 +75,9 @@ export default function AdminDashboardPage() {
       <PanelCard
         title="آخرین سفارش‌ها"
         action={
-          <Link href="/admin/orders">
-            <Button size="sm" variant="outline">
-              مدیریت سفارش‌ها
-            </Button>
-          </Link>
+          <Button href="/admin/orders" size="sm" variant="outline">
+            مدیریت سفارش‌ها
+          </Button>
         }
       >
         <div className="overflow-x-auto">

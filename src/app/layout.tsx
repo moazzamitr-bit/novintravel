@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { ToastHost } from "@/components/ui/ToastHost";
 import { siteConfig } from "@/data/homepage";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
           پرش به محتوای اصلی
         </a>
         <SiteChrome>{children}</SiteChrome>
+        <ToastHost />
       </body>
     </html>
   );

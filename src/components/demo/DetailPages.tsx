@@ -92,11 +92,9 @@ function StickyBookCard({
         {priceLabel(price)}
       </p>
       <p className="mt-2 text-[13px] leading-6 text-novin-text-secondary">{note}</p>
-      <Link href={href} className="mt-5 block">
-        <Button className="w-full" size="lg">
-          {cta}
-        </Button>
-      </Link>
+      <Button href={href} className="mt-5 w-full" size="lg">
+        {cta}
+      </Button>
       <p className="mt-3 text-center text-[11px] text-novin-text-muted">
         ادامه به فلوی رزرو دمو
       </p>
@@ -197,15 +195,16 @@ export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
                     <p className="text-[18px] font-bold text-novin-purple">
                       {priceLabel(room.price)}
                     </p>
-                    <Link
+                    <Button
                       href={buildBookingHref("passengers", {
                         type: "hotel",
                         id: hotel.id,
                         roomId: room.id,
                       })}
+                      size="sm"
                     >
-                      <Button size="sm">رزرو اتاق</Button>
-                    </Link>
+                      رزرو اتاق
+                    </Button>
                   </div>
                 </article>
               ))}

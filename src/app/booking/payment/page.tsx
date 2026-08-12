@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PaymentStep } from "@/components/booking/PaymentStep";
 import { Button } from "@/components/ui/Button";
 import { resolveBookingItem } from "@/lib/booking";
@@ -25,9 +24,9 @@ export default async function PaymentBookingPage({
       <div className="container-page section-spacing">
         <div className="mx-auto max-w-lg rounded-[22px] border border-novin-border bg-white p-8 text-center">
           <h1 className="text-[22px] font-bold text-novin-text">آیتم رزرو یافت نشد</h1>
-          <Link href="/" className="mt-6 inline-flex">
-            <Button>صفحه اصلی</Button>
-          </Link>
+          <Button href="/" className="mt-6">
+            صفحه اصلی
+          </Button>
         </div>
       </div>
     );

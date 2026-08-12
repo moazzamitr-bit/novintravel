@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Plane } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { demoFlights, priceLabel } from "@/data/demo";
@@ -111,14 +110,15 @@ export function FlightResultsDemo() {
                   </p>
                 ) : null}
               </div>
-              <Link
+              <Button
                 href={buildBookingHref("passengers", {
                   type: "flight",
                   id: flight.id,
                 })}
+                size="md"
               >
-                <Button size="md">انتخاب و خرید</Button>
-              </Link>
+                انتخاب و خرید
+              </Button>
             </div>
           </div>
         </article>

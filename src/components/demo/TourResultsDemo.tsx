@@ -79,9 +79,7 @@ export function TourResultsDemo() {
                   {priceLabel(tour.priceFrom)}
                 </p>
               </div>
-              <Link href={`/tours/${tour.id}`}>
-                <Button>جزئیات تور</Button>
-              </Link>
+              <Button href={`/tours/${tour.id}`}>جزئیات تور</Button>
             </div>
           </div>
         </article>

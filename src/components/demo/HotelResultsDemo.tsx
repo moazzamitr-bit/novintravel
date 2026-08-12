@@ -89,9 +89,9 @@ export function HotelResultsDemo() {
                     {hotel.reviews.toLocaleString("fa-IR")} نظر
                   </p>
                 </div>
-                <Link href={`/hotels/${hotel.id}`}>
-                  <Button size="sm">مشاهده اتاق‌ها</Button>
-                </Link>
+                <Button href={`/hotels/${hotel.id}`} size="sm">
+                  مشاهده اتاق‌ها
+                </Button>
               </div>
             </div>
           </article>

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
@@ -58,12 +57,10 @@ export function AssistantClient() {
               درخواست شما ثبت شد. اتصال به موتور پیشنهاد سفر در فاز بعدی فعال
               می‌شود. فعلاً می‌توانید از جستجوی پرواز و هتل شروع کنید.
               <div className="mt-4 flex flex-wrap gap-3">
-                <Link href="/flights">
-                  <Button>جستجوی پرواز</Button>
-                </Link>
-                <Link href="/hotels">
-                  <Button variant="outline">جستجوی هتل</Button>
-                </Link>
+                <Button href="/flights">جستجوی پرواز</Button>
+                <Button href="/hotels" variant="outline">
+                  جستجوی هتل
+                </Button>
               </div>
             </div>
           ) : null}

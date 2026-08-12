@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BriefcaseBusiness, ChartColumn, CreditCard, ShieldCheck, Users, WalletCards } from "lucide-react";
 import { corporateFeatures } from "@/data/homepage";
 import { Button } from "@/components/ui/Button";
@@ -40,11 +39,9 @@ export function CorporateTravel() {
               })}
             </ul>
 
-            <Link href="/corporate/request" className="mt-8 inline-flex">
-              <Button variant="secondary" size="lg">
-                درخواست پنل سازمانی
-              </Button>
-            </Link>
+            <Button href="/corporate/request" variant="secondary" size="lg" className="mt-8">
+              درخواست پنل سازمانی
+            </Button>
           </div>
 
           <div className="relative">

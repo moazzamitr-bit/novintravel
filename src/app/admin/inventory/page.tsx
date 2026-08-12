@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { ActionButton } from "@/components/ui/ActionButton";
 import { PanelCard } from "@/components/panel/PanelShell";
 import { adminInventory } from "@/data/panels";
 import { formatToman } from "@/lib/utils";
@@ -7,7 +7,11 @@ export default function AdminInventoryPage() {
   return (
     <PanelCard
       title="موجودی پرواز، هتل و تور"
-      action={<Button size="sm">افزودن آیتم</Button>}
+      action={
+        <ActionButton size="sm" message="فرم افزودن آیتم باز شد (دمو)">
+          افزودن آیتم
+        </ActionButton>
+      }
     >
       <div className="grid gap-3">
         {adminInventory.map((item) => (
@@ -28,9 +32,9 @@ export default function AdminInventoryPage() {
               <p className="text-[16px] font-bold text-novin-purple">
                 {formatToman(item.price)}
               </p>
-              <Button size="sm" variant="outline">
+              <ActionButton size="sm" variant="outline" message={`ویرایش ${item.title}`}>
                 ویرایش
-              </Button>
+              </ActionButton>
             </div>
           </article>
         ))}

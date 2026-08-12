@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { PanelCard } from "@/components/panel/PanelShell";
 import {
@@ -13,9 +12,9 @@ export default function AccountOrdersPage() {
     <PanelCard
       title="سفارش‌های من"
       action={
-        <Link href="/flights">
-          <Button size="sm">خرید جدید</Button>
-        </Link>
+        <Button href="/flights" size="sm">
+          خرید جدید
+        </Button>
       }
     >
       <div className="overflow-x-auto">
@@ -49,7 +48,7 @@ export default function AccountOrdersPage() {
                   </span>
                 </td>
                 <td className="py-3">
-                  <Button size="sm" variant="outline">
+                  <Button href={`/account/orders/${order.id}`} size="sm" variant="outline">
                     جزئیات
                   </Button>
                 </td>
