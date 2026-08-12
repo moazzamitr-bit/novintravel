@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Headphones, Menu, X } from "lucide-react";
 import { mainNav, siteConfig } from "@/data/homepage";
 import { Button } from "@/components/ui/Button";
@@ -11,20 +11,7 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 24);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const transparent = isHome && !scrolled && !open;
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -32,32 +19,22 @@ export function Header() {
   }
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
-        transparent
-          ? "border-b border-white/10 bg-[rgba(14,10,20,0.28)] backdrop-blur-md"
-          : "border-b border-novin-border/60 bg-novin-surface/90 shadow-[0_1px_0_rgba(26,20,36,0.03)] backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/80",
-      )}
-    >
+    <header className="sticky top-0 z-50 border-b border-novin-border/60 bg-novin-surface/85 shadow-[0_1px_0_rgba(26,20,36,0.03)] backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/75">
       <div className="container-page">
         <div className="flex h-[72px] items-center justify-between gap-4 lg:h-[76px]">
           <div className="flex min-w-0 items-center gap-6 xl:gap-8">
             <Link
               href="/"
-              className={cn(
-                "relative flex h-11 w-[158px] shrink-0 items-center justify-center overflow-hidden rounded-xl sm:h-[48px] sm:w-[180px]",
-                transparent && "bg-white px-2 shadow-soft",
-              )}
+              className="relative flex h-11 w-[158px] shrink-0 items-center sm:h-[48px] sm:w-[180px]"
               aria-label={siteConfig.name}
             >
               <Image
                 src="/brand/logo-horizontal.png"
                 alt={siteConfig.name}
-                width={180}
-                height={48}
+                fill
                 priority
-                className="h-9 w-auto object-contain object-right sm:h-11"
+                className="object-contain object-right"
+                sizes="180px"
               />
             </Link>
 
@@ -73,13 +50,9 @@ export function Header() {
                     href={item.href}
                     className={cn(
                       "relative whitespace-nowrap px-2.5 py-2 text-[13px] font-medium transition-colors duration-200",
-                      transparent
-                        ? active
-                          ? "text-novin-orange"
-                          : "text-white/88 hover:text-white"
-                        : active
-                          ? "text-novin-orange"
-                          : "text-novin-text-secondary hover:text-novin-purple",
+                      active
+                        ? "text-novin-orange"
+                        : "text-novin-text-secondary hover:text-novin-purple",
                     )}
                   >
                     {item.label}
@@ -95,12 +68,7 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={siteConfig.phoneHref}
-              className={cn(
-                "hidden items-center gap-2 rounded-xl px-2 py-2 transition-colors md:inline-flex",
-                transparent
-                  ? "text-white hover:bg-white/10"
-                  : "text-novin-purple hover:bg-novin-bg-secondary",
-              )}
+              className="hidden items-center gap-2 rounded-xl px-2 py-2 text-novin-purple transition-colors hover:bg-novin-bg-secondary md:inline-flex"
             >
               <Headphones className="h-[18px] w-[18px]" aria-hidden />
               <span className="text-[14px] font-semibold tracking-wide" dir="ltr">
@@ -109,33 +77,17 @@ export function Header() {
             </a>
 
             <div className="hidden items-center gap-2 sm:flex">
-              <Button
-                href="/account"
-                variant={transparent ? "white" : "outline"}
-                size="sm"
-              >
+              <Button href="/account" variant="outline" size="sm">
                 ورود / ثبت‌نام
               </Button>
-              <Button
-                href="/admin"
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  transparent ? "text-white/75 hover:bg-white/10 hover:text-white" : "text-novin-text-muted",
-                )}
-              >
+              <Button href="/admin" variant="ghost" size="sm" className="text-novin-text-muted">
                 ادمین
               </Button>
             </div>
 
             <button
               type="button"
-              className={cn(
-                "inline-flex h-10 w-10 items-center justify-center rounded-xl border xl:hidden",
-                transparent
-                  ? "border-white/25 text-white"
-                  : "border-novin-border text-novin-purple",
-              )}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-novin-border text-novin-purple xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? "بستن منو" : "باز کردن منو"}

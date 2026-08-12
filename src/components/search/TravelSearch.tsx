@@ -25,13 +25,11 @@ import {
 interface TravelSearchProps {
   initialService?: ServiceType;
   embedded?: boolean;
-  ticket?: boolean;
 }
 
 export function TravelSearch({
   initialService = "flight",
   embedded = false,
-  ticket = false,
 }: TravelSearchProps) {
   const router = useRouter();
   const [state, setState] = useState<TravelSearchState>({
@@ -91,35 +89,45 @@ export function TravelSearch({
       aria-label="جستجوی سفر"
       className={cn(
         "relative z-30",
-        !embedded && !ticket && "-mt-[80px] sm:-mt-[104px] lg:-mt-[120px]",
+        embedded
+          ? "mt-0"
+          : "-mt-[80px] sm:-mt-[104px] lg:-mt-[120px]",
       )}
     >
-      <div className={embedded || ticket ? undefined : "container-page"}>
+      <div className={embedded ? undefined : "container-page"}>
         <form
           onSubmit={handleSubmit}
           className={cn(
             "relative z-30 mx-auto max-w-[1320px] overflow-visible",
-            ticket
-              ? "rounded-[22px] border border-white/25 bg-white/95 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl ring-1 ring-black/5"
-              : embedded
-                ? "rounded-[20px] border border-novin-border bg-novin-surface shadow-card"
-                : "rounded-[24px] border border-white/80 bg-novin-surface/95 shadow-search backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/92",
+            !embedded &&
+              "rounded-[24px] border border-white/80 bg-novin-surface/95 shadow-search backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/92",
+            embedded &&
+              "rounded-[20px] border border-novin-border bg-novin-surface shadow-card",
           )}
         >
-          {ticket ? (
+          {/* Boarding-pass signature: ember route tab + side notches */}
+          {!embedded ? (
             <>
               <div
-                className="pointer-events-none absolute inset-y-5 right-0 w-[4px] rounded-l-full bg-gradient-to-b from-novin-orange via-[#ff7a3d] to-novin-purple"
+                className="pointer-events-none absolute inset-y-6 right-0 w-[3px] rounded-l-full bg-gradient-to-b from-novin-orange via-[#ff7a3d] to-novin-purple"
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute inset-x-10 top-0 h-px bg-[repeating-linear-gradient(90deg,transparent,transparent_6px,rgba(227,224,234,0.95)_6px,rgba(227,224,234,0.95)_10px)]"
+                className="pointer-events-none absolute -right-2.5 top-1/2 z-40 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-novin-bg shadow-[inset_0_0_0_1px_rgba(227,224,234,0.9)] lg:block"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -left-2.5 top-1/2 z-40 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-novin-bg shadow-[inset_0_0_0_1px_rgba(227,224,234,0.9)] lg:block"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-10 left-0 hidden w-px border-l border-dashed border-novin-border/90 lg:block"
                 aria-hidden
               />
             </>
           ) : null}
 
-          <div className={cn("overflow-hidden", ticket ? "rounded-t-[22px]" : "rounded-t-[24px]")}>
+          <div className="overflow-hidden rounded-t-[24px]">
             <SearchTabs
               value={state.serviceType}
               onChange={(serviceType) => {
@@ -131,16 +139,16 @@ export function TravelSearch({
 
           <div
             className={cn(
-              "relative z-40 space-y-3 overflow-visible p-3 transition-opacity duration-200 sm:space-y-4 sm:p-4 lg:p-5",
+              "relative z-40 space-y-4 overflow-visible p-4 transition-opacity duration-200 sm:p-5 lg:p-6 lg:pr-7",
               isPending && "opacity-70",
             )}
           >
             {form}
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {state.serviceType === "flight" ? (
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
-                  <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
+                  <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
                     <input
                       type="checkbox"
                       checked={state.directOnly}
@@ -154,7 +162,7 @@ export function TravelSearch({
                     />
                     پرواز مستقیم
                   </label>
-                  <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
+                  <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
                     <input
                       type="checkbox"
                       checked={state.oneWayTicketOnly}

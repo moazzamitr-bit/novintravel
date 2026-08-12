@@ -10,6 +10,7 @@ import { PromoBanners } from "@/components/homepage/PromoBanners";
 import { QuickServices } from "@/components/homepage/QuickServices";
 import { TravelGuide } from "@/components/homepage/TravelGuide";
 import { WhyNovinTravel } from "@/components/homepage/WhyNovinTravel";
+import { TravelSearch } from "@/components/search/TravelSearch";
 import { siteConfig } from "@/data/homepage";
 
 function JsonLd() {
@@ -63,6 +64,7 @@ export default function HomePage() {
     <>
       <JsonLd />
       <Hero />
+      <TravelSearch />
       <QuickServices />
       <PromoBanners />
       <DestinationSpotlight />
