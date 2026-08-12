@@ -1,42 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* Golden Hour Passage — Novin Travel */
   --color-novin-purple: #4f2f7c;
   --color-novin-purple-dark: #3d2460;
   --color-novin-purple-deep: #2c1a4a;
   --color-novin-purple-soft: #6b4a96;
-  --color-novin-orange: #e84e18;
-  --color-novin-orange-hover: #d44312;
-  --color-novin-ink: #1a1424;
-  --color-novin-tile: #1f8a8c;
-  --color-novin-bg: #f7f5f9;
-  --color-novin-bg-secondary: #efecf3;
-  --color-novin-border: #e3e0ea;
-  --color-novin-text: #1a1424;
-  --color-novin-text-secondary: #5f586c;
-  --color-novin-text-muted: #908a9a;
+  --color-novin-orange: #f84209;
+  --color-novin-orange-hover: #e03a06;
+  --color-novin-bg: #ffffff;
+  --color-novin-bg-secondary: #f8f8fb;
+  --color-novin-border: #e8e7ee;
+  --color-novin-text: #201a2d;
+  --color-novin-text-secondary: #706b7a;
+  --color-novin-text-muted: #9994a3;
   --color-novin-surface: #ffffff;
-  --shadow-card: 0 1px 0 rgba(26, 20, 36, 0.04), 0 12px 36px rgba(45, 30, 70, 0.07);
-  --shadow-search: 0 8px 24px rgba(26, 20, 36, 0.08), 0 28px 72px rgba(45, 30, 70, 0.16);
-  --shadow-soft: 0 2px 10px rgba(45, 30, 70, 0.06);
+  --shadow-card: 0 8px 30px rgba(50, 35, 80, 0.06);
+  --shadow-search: 0 22px 64px rgba(45, 30, 70, 0.16);
+  --shadow-soft: 0 4px 16px rgba(50, 35, 80, 0.08);
   --font-sans: var(--font-vazirmatn), "Tahoma", "Segoe UI", sans-serif;
-  --radius-control: 12px;
-  --radius-card: 18px;
-  --radius-container: 24px;
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-container: 22px;
   --max-width-page: 1400px;
-  --animate-fade-up: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-hero-ken: hero-ken 9s ease-out both;
-  --animate-hero-ken-alt: hero-ken-alt 9s ease-out both;
-  --animate-hero-ken-pan: hero-ken-pan 9s ease-out both;
-  --animate-hero-sheen: hero-sheen 12s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-hero-ken: hero-ken 8s ease-out both;
+  --animate-hero-ken-alt: hero-ken-alt 8s ease-out both;
+  --animate-hero-ken-pan: hero-ken-pan 8s ease-out both;
+  --animate-hero-sheen: hero-sheen 10s ease-in-out infinite;
   --animate-hero-progress: hero-progress linear both;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -77,19 +74,19 @@
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 210, 160, 0.1) 45%,
+      rgba(255, 210, 160, 0.12) 45%,
       transparent 70%
     );
-    transform: translateX(-6%);
+    transform: translateX(-8%);
   }
   50% {
     background: linear-gradient(
       115deg,
       transparent 25%,
-      rgba(255, 210, 160, 0.16) 50%,
+      rgba(255, 210, 160, 0.18) 50%,
       transparent 75%
     );
-    transform: translateX(6%);
+    transform: translateX(8%);
   }
 }
 
@@ -111,11 +108,10 @@
     @apply bg-novin-bg text-novin-text antialiased;
     font-family: var(--font-sans);
     line-height: 1.8;
-    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-novin-purple) 20%, white);
+    background: color-mix(in srgb, var(--color-novin-purple) 18%, white);
     color: var(--color-novin-text);
   }
 
@@ -142,26 +138,7 @@
   }
 
   .section-spacing {
-    @apply py-14 sm:py-16 lg:py-24;
-  }
-
-  .display-title {
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-novin-orange);
-  }
-
-  .img-outline {
-    outline: 1px solid oklch(0 0 0 / 0.1);
-    outline-offset: -1px;
+    @apply py-12 sm:py-16 lg:py-[88px];
   }
 
   .animate-fade-up {
