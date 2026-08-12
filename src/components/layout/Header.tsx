@@ -46,18 +46,18 @@ export function Header() {
             <Link
               href="/"
               className={cn(
-                "relative flex h-11 w-[158px] shrink-0 items-center rounded-xl sm:h-[48px] sm:w-[180px]",
-                transparent && "bg-white/95 px-2 shadow-soft",
+                "relative flex h-11 w-[158px] shrink-0 items-center justify-center overflow-hidden rounded-xl sm:h-[48px] sm:w-[180px]",
+                transparent && "bg-white px-2 shadow-soft",
               )}
               aria-label={siteConfig.name}
             >
               <Image
                 src="/brand/logo-horizontal.png"
                 alt={siteConfig.name}
-                fill
+                width={180}
+                height={48}
                 priority
-                className="object-contain object-right p-1"
-                sizes="180px"
+                className="h-9 w-auto object-contain object-right sm:h-11"
               />
             </Link>
 
