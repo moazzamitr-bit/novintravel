@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { demoHotels, priceLabel, starsLabel } from "@/data/demo";
@@ -39,7 +40,7 @@ export function HotelResultsDemo() {
             key={hotel.id}
             className="overflow-hidden rounded-[20px] border border-novin-border bg-white transition hover:-translate-y-0.5 hover:shadow-card"
           >
-            <div className="relative aspect-[16/10]">
+            <Link href={`/hotels/${hotel.id}`} className="relative block aspect-[16/10]">
               <Image
                 src={hotel.image}
                 alt={hotel.name}
@@ -50,12 +51,14 @@ export function HotelResultsDemo() {
               <span className="absolute right-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[12px] font-medium text-novin-purple">
                 {starsLabel(hotel.stars)}
               </span>
-            </div>
+            </Link>
             <div className="p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h3 className="text-[17px] font-bold text-novin-text">
-                    {hotel.name}
+                    <Link href={`/hotels/${hotel.id}`} className="hover:text-novin-purple">
+                      {hotel.name}
+                    </Link>
                   </h3>
                   <p className="mt-1 text-[13px] text-novin-text-secondary">
                     {hotel.city} · {hotel.board}
@@ -86,7 +89,9 @@ export function HotelResultsDemo() {
                     {hotel.reviews.toLocaleString("fa-IR")} نظر
                   </p>
                 </div>
-                <Button size="sm">مشاهده اتاق‌ها</Button>
+                <Link href={`/hotels/${hotel.id}`}>
+                  <Button size="sm">مشاهده اتاق‌ها</Button>
+                </Link>
               </div>
             </div>
           </article>

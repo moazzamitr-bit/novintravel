@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { demoStays, priceLabel } from "@/data/demo";
@@ -31,7 +32,7 @@ export function StayResultsDemo() {
             key={stay.id}
             className="overflow-hidden rounded-[20px] border border-novin-border bg-white transition hover:-translate-y-0.5 hover:shadow-card"
           >
-            <div className="relative aspect-[4/3]">
+            <Link href={`/stays/${stay.id}`} className="relative block aspect-[4/3]">
               <Image
                 src={stay.image}
                 alt={stay.title}
@@ -42,10 +43,12 @@ export function StayResultsDemo() {
               <span className="absolute right-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[12px] font-medium text-novin-purple">
                 {stay.type}
               </span>
-            </div>
+            </Link>
             <div className="p-4">
               <h3 className="text-[16px] font-bold text-novin-text">
-                {stay.title}
+                <Link href={`/stays/${stay.id}`} className="hover:text-novin-purple">
+                  {stay.title}
+                </Link>
               </h3>
               <p className="mt-1 text-[13px] text-novin-text-secondary">
                 {stay.city}
@@ -60,9 +63,11 @@ export function StayResultsDemo() {
                 <p className="text-[16px] font-bold text-novin-purple">
                   {priceLabel(stay.priceFrom)}
                 </p>
-                <Button size="sm" variant="outline">
-                  رزرو
-                </Button>
+                <Link href={`/stays/${stay.id}`}>
+                  <Button size="sm" variant="outline">
+                    جزئیات
+                  </Button>
+                </Link>
               </div>
             </div>
           </article>

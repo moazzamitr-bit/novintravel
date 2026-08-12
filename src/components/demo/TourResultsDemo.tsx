@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { demoTours, priceLabel } from "@/data/demo";
 import { ResultsShell } from "./ResultsShell";
@@ -37,7 +38,7 @@ export function TourResultsDemo() {
           key={tour.id}
           className="grid overflow-hidden rounded-[20px] border border-novin-border bg-white transition hover:-translate-y-0.5 hover:shadow-card md:grid-cols-[240px_minmax(0,1fr)]"
         >
-          <div className="relative min-h-[180px]">
+          <Link href={`/tours/${tour.id}`} className="relative min-h-[180px] block">
             <Image
               src={tour.image}
               alt={tour.title}
@@ -45,7 +46,7 @@ export function TourResultsDemo() {
               className="object-cover"
               sizes="240px"
             />
-          </div>
+          </Link>
           <div className="flex flex-col justify-between gap-4 p-4 sm:p-5">
             <div>
               <p className="text-[12px] font-medium text-novin-orange">
@@ -53,7 +54,9 @@ export function TourResultsDemo() {
                 {tour.nights.toLocaleString("fa-IR")} شب · حرکت {tour.departure}
               </p>
               <h3 className="mt-1 text-[18px] font-bold text-novin-text">
-                {tour.title}
+                <Link href={`/tours/${tour.id}`} className="hover:text-novin-purple">
+                  {tour.title}
+                </Link>
               </h3>
               <p className="mt-1 text-[13px] text-novin-text-secondary">
                 {tour.origin} → {tour.destination}
@@ -76,7 +79,9 @@ export function TourResultsDemo() {
                   {priceLabel(tour.priceFrom)}
                 </p>
               </div>
-              <Button>جزئیات تور</Button>
+              <Link href={`/tours/${tour.id}`}>
+                <Button>جزئیات تور</Button>
+              </Link>
             </div>
           </div>
         </article>
