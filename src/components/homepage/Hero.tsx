@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { TravelSearch } from "@/components/search/TravelSearch";
 import { cn } from "@/lib/utils";
 
 const slides = [
@@ -9,7 +10,7 @@ const slides = [
     id: "wing",
     src: "/images/hero/wing-sunset.jpg",
     alt: "بال هواپیما بالای ابرها در غروب",
-    objectPosition: "object-[72%_45%] sm:object-[68%_42%]",
+    objectPosition: "object-[70%_42%]",
     ken: "motion-safe:animate-hero-ken",
     caption: "پرواز به افق‌های تازه",
   },
@@ -17,7 +18,7 @@ const slides = [
     id: "jet",
     src: "/images/hero/jet-islands.jpg",
     alt: "هواپیما بر فراز جزایر استوایی در غروب",
-    objectPosition: "object-[55%_40%]",
+    objectPosition: "object-[55%_38%]",
     ken: "motion-safe:animate-hero-ken-alt",
     caption: "مقصد بعدی، فقط یک جستجو فاصله دارد",
   },
@@ -25,7 +26,7 @@ const slides = [
     id: "villa",
     src: "/images/hero/villa-terrace.jpg",
     alt: "تراس لوکس مشرف به دریا در غروب آفتاب",
-    objectPosition: "object-[62%_48%] sm:object-[58%_45%]",
+    objectPosition: "object-[60%_45%]",
     ken: "motion-safe:animate-hero-ken-pan",
     caption: "اقامت‌هایی که خاطره می‌سازند",
   },
@@ -33,7 +34,7 @@ const slides = [
     id: "hafez",
     src: "/images/hero/hafez-shiraz.jpg",
     alt: "آرامگاه حافظ در شیراز هنگام غروب",
-    objectPosition: "object-[48%_42%]",
+    objectPosition: "object-[48%_40%]",
     ken: "motion-safe:animate-hero-ken",
     caption: "ایران را از نزدیک کشف کنید",
   },
@@ -41,7 +42,7 @@ const slides = [
     id: "coast",
     src: "/images/mood/coastal-resort.jpg",
     alt: "ریزورت ساحلی لوکس در غروب",
-    objectPosition: "object-[40%_45%] sm:object-[35%_42%]",
+    objectPosition: "object-[38%_42%]",
     ken: "motion-safe:animate-hero-ken-alt",
     caption: "از ساحل تا شهر؛ همه در یک پلتفرم",
   },
@@ -63,7 +64,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative isolate h-[540px] overflow-hidden sm:h-[600px] lg:h-[660px]"
+      className="relative isolate min-h-[100svh] overflow-hidden pb-8 pt-[72px] sm:pb-10 lg:min-h-[920px] lg:pb-12"
       aria-label="معرفی نوین تراول"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -98,48 +99,47 @@ export function Hero() {
         </div>
       ))}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_28%,rgba(232,78,24,0.16)_0%,transparent_42%),radial-gradient(ellipse_at_85%_18%,rgba(79,47,124,0.2)_0%,transparent_38%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(26,20,36,0.28)_0%,rgba(26,20,36,0.42)_46%,rgba(26,20,36,0.68)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(26,20,36,0.4)_0%,rgba(26,20,36,0.08)_34%,rgba(26,20,36,0.58)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-novin-bg via-novin-bg/55 to-transparent" />
+      {/* Strong readable stage for brand — still shows photo on left/top */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_75%_20%,rgba(232,78,24,0.22)_0%,transparent_42%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(14,10,20,0.25)_0%,rgba(14,10,20,0.45)_38%,rgba(14,10,20,0.78)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,10,20,0.55)_0%,rgba(14,10,20,0.12)_28%,rgba(14,10,20,0.35)_62%,rgba(14,10,20,0.88)_100%)]" />
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-35 mix-blend-soft-light motion-safe:animate-hero-sheen"
+        className="pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light motion-safe:animate-hero-sheen"
         aria-hidden
       />
 
-      <div className="container-page relative z-10 flex h-full flex-col justify-between pb-32 pt-11 sm:pb-36 sm:pt-14 lg:pb-40 lg:pt-16">
-        <div className="max-w-2xl">
-          <p className="eyebrow mb-5 text-white/90 motion-safe:animate-fade-up !text-novin-orange">
-            NOVIN TRAVEL
-          </p>
+      <div className="container-page relative z-10 flex min-h-[calc(100svh-72px)] flex-col justify-between gap-10 py-8 sm:gap-12 sm:py-10 lg:min-h-[calc(920px-72px)] lg:py-12">
+        <div className="max-w-3xl pt-2 sm:pt-6">
+          <div className="mb-5 inline-flex items-center gap-3 motion-safe:animate-fade-up">
+            <span className="h-px w-8 bg-novin-orange sm:w-12" aria-hidden />
+            <p className="text-[12px] font-semibold tracking-[0.22em] text-novin-orange sm:text-[13px]">
+              NOVIN TRAVEL
+            </p>
+          </div>
 
-          <h1 className="display-title text-white drop-shadow-[0_6px_32px_rgba(12,8,24,0.4)] motion-safe:animate-fade-up motion-safe:[animation-delay:90ms]">
-            <span className="block text-[42px] sm:text-[58px] lg:text-[72px]">
+          <h1 className="motion-safe:animate-fade-up motion-safe:[animation-delay:90ms]">
+            <span className="block text-[48px] font-black leading-[1.05] tracking-tight text-white drop-shadow-[0_8px_40px_rgba(0,0,0,0.45)] sm:text-[68px] lg:text-[84px]">
               نوین تراول
             </span>
-            <span className="mt-3 block max-w-xl text-[21px] font-bold leading-9 text-white/95 sm:mt-4 sm:text-[28px] sm:leading-10 lg:text-[32px]">
+            <span className="mt-4 block max-w-2xl text-[22px] font-bold leading-10 text-white sm:mt-5 sm:text-[32px] sm:leading-[1.35] lg:text-[36px]">
               سفر را هوشمندانه تجربه کنید
             </span>
           </h1>
 
-          <p className="mt-5 max-w-md text-[15px] leading-8 text-white/88 motion-safe:animate-fade-up motion-safe:[animation-delay:170ms] sm:text-[16.5px]">
+          <p className="mt-5 max-w-lg text-[15px] leading-8 text-white/90 motion-safe:animate-fade-up motion-safe:[animation-delay:160ms] sm:mt-6 sm:text-[17px] sm:leading-9">
             پرواز، هتل و تور با قیمت شفاف — از اولین جستجو تا رزرو نهایی
           </p>
 
           <p
             key={slides[active].id}
-            className="mt-7 inline-flex items-center gap-2.5 text-[13px] text-white/78 motion-safe:animate-fade-up sm:text-[14px]"
+            className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[13px] text-white/90 backdrop-blur-md motion-safe:animate-fade-up sm:text-[14px]"
           >
-            <span
-              className="h-px w-10 bg-gradient-to-l from-novin-orange to-transparent"
-              aria-hidden
-            />
             {slides[active].caption}
           </p>
         </div>
 
-        <div className="motion-safe:animate-fade-up motion-safe:[animation-delay:240ms]">
+        <div className="space-y-4 motion-safe:animate-fade-up motion-safe:[animation-delay:220ms]">
           <div className="flex gap-2" role="tablist" aria-label="اسلایدهای هیرو">
             {slides.map((slide, index) => (
               <button
@@ -152,8 +152,8 @@ export function Hero() {
                 className={cn(
                   "relative h-1.5 overflow-hidden rounded-full transition-[width,background-color] duration-500",
                   index === active
-                    ? "w-11 bg-white/30"
-                    : "w-1.5 bg-white/45 hover:bg-white/70",
+                    ? "w-12 bg-white/35"
+                    : "w-2 bg-white/45 hover:bg-white/75",
                 )}
               >
                 {index === active && !paused ? (
@@ -167,6 +167,19 @@ export function Hero() {
                 ) : null}
               </button>
             ))}
+          </div>
+
+          {/* Signature boarding-pass search docked in the cinematic stage */}
+          <div className="relative">
+            <div
+              className="pointer-events-none absolute -top-3 right-8 hidden h-6 w-6 rounded-full bg-[rgba(14,10,20,0.9)] ring-1 ring-white/10 sm:block"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute -top-3 left-8 hidden h-6 w-6 rounded-full bg-[rgba(14,10,20,0.9)] ring-1 ring-white/10 sm:block"
+              aria-hidden
+            />
+            <TravelSearch embedded ticket />
           </div>
         </div>
       </div>

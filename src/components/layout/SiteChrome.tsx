@@ -16,7 +16,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main id="main-content">{children}</main>
+      <main
+        id="main-content"
+        className={pathname === "/" ? undefined : "pt-[72px] lg:pt-[76px]"}
+      >
+        {children}
+      </main>
       <Footer />
     </>
   );

@@ -23,7 +23,7 @@ const icons = {
 export function QuickServices() {
   return (
     <section
-      className="container-page pt-14 sm:pt-16 lg:pt-20"
+      className="container-page pt-10 sm:pt-12 lg:pt-14"
       aria-label="خدمات سریع"
     >
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-3.5">
