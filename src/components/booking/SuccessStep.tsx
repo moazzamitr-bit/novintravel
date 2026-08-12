@@ -77,18 +77,23 @@ export function SuccessStep({
           </div>
         </div>
 
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Button size="lg">
-            <Download className="h-4 w-4" />
-            دانلود بلیط / واچر
-          </Button>
-          <Link href="/">
-            <Button size="lg" variant="outline">
-              <Home className="h-4 w-4" />
-              بازگشت به صفحه اصلی
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Button size="lg">
+              <Download className="h-4 w-4" />
+              دانلود بلیط / واچر
             </Button>
-          </Link>
-        </div>
+            <Link href="/account/orders">
+              <Button size="lg" variant="outline">
+                مشاهده در پنل کاربری
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button size="lg" variant="ghost">
+                <Home className="h-4 w-4" />
+                صفحه اصلی
+              </Button>
+            </Link>
+          </div>
       </div>
     </div>
   );

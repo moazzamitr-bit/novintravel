@@ -76,9 +76,19 @@ export function Header() {
               </span>
             </a>
 
-            <Button variant="outline" size="sm" className="hidden sm:inline-flex">
-              ورود / ثبت‌نام
-            </Button>
+            <div className="hidden items-center gap-2 sm:flex">
+              <Link href="/account">
+                <Button variant="outline" size="sm">
+                  ورود / ثبت‌نام
+                </Button>
+              </Link>
+              <Link
+                href="/admin"
+                className="rounded-xl px-2 py-2 text-[12px] font-medium text-novin-text-muted hover:text-novin-purple"
+              >
+                ادمین
+              </Link>
+            </div>
 
             <button
               type="button"
@@ -126,9 +136,16 @@ export function Header() {
                 <Headphones className="h-4 w-4" />
                 <span dir="ltr">{siteConfig.phone}</span>
               </a>
-              <Button variant="outline" className="w-full">
-                ورود / ثبت‌نام
-              </Button>
+              <Link href="/account" onClick={() => setOpen(false)}>
+                <Button variant="outline" className="w-full">
+                  ورود / ثبت‌نام
+                </Button>
+              </Link>
+              <Link href="/admin" onClick={() => setOpen(false)}>
+                <Button variant="ghost" className="w-full">
+                  پنل ادمین (دمو)
+                </Button>
+              </Link>
             </div>
           </nav>
         </div>

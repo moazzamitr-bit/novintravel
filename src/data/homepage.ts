@@ -339,5 +339,7 @@ export const footerColumns = {
     { label: "همکاری با ما", href: "/partners" },
     { label: "سفر سازمانی", href: "/corporate" },
     { label: "فرصت‌های شغلی", href: "/careers" },
+    { label: "پنل کاربری", href: "/account" },
+    { label: "پنل ادمین", href: "/admin" },
   ],
 };

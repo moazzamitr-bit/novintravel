@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { siteConfig } from "@/data/homepage";
 import "./globals.css";
 
@@ -63,9 +62,7 @@ export default function RootLayout({
         >
           پرش به محتوای اصلی
         </a>
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
