@@ -9,6 +9,7 @@ import {
   type DemoStay,
   type DemoTour,
 } from "@/data/demo";
+import { buildBookingHref } from "@/lib/booking";
 
 function DetailBreadcrumbs({
   parentHref,
@@ -46,11 +47,27 @@ function Gallery({ images, alt }: { images: string[]; alt: string }) {
   return (
     <div className="grid gap-2 sm:grid-cols-3 sm:grid-rows-2 sm:gap-3">
       <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] sm:col-span-2 sm:row-span-2 sm:aspect-auto sm:min-h-[320px]">
-        <Image src={images[0]} alt={alt} fill className="object-cover" sizes="(max-width:768px) 100vw, 66vw" priority />
+        <Image
+          src={images[0]}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width:768px) 100vw, 66vw"
+          priority
+        />
       </div>
       {images.slice(1, 3).map((src, index) => (
-        <div key={src} className="relative hidden aspect-[16/10] overflow-hidden rounded-[18px] sm:block sm:min-h-[154px]">
-          <Image src={src} alt={`${alt} ${index + 2}`} fill className="object-cover" sizes="33vw" />
+        <div
+          key={src}
+          className="relative hidden aspect-[16/10] overflow-hidden rounded-[18px] sm:block sm:min-h-[154px]"
+        >
+          <Image
+            src={src}
+            alt={`${alt} ${index + 2}`}
+            fill
+            className="object-cover"
+            sizes="33vw"
+          />
         </div>
       ))}
     </div>
@@ -61,10 +78,12 @@ function StickyBookCard({
   price,
   note,
   cta,
+  href,
 }: {
   price: number;
   note: string;
   cta: string;
+  href: string;
 }) {
   return (
     <aside className="h-fit rounded-[22px] border border-novin-border bg-white p-5 shadow-card lg:sticky lg:top-28">
@@ -73,17 +92,20 @@ function StickyBookCard({
         {priceLabel(price)}
       </p>
       <p className="mt-2 text-[13px] leading-6 text-novin-text-secondary">{note}</p>
-      <Button className="mt-5 w-full" size="lg">
-        {cta}
-      </Button>
+      <Link href={href} className="mt-5 block">
+        <Button className="w-full" size="lg">
+          {cta}
+        </Button>
+      </Link>
       <p className="mt-3 text-center text-[11px] text-novin-text-muted">
-        نسخه دمو · پرداخت واقعی فعال نیست
+        ادامه به فلوی رزرو دمو
       </p>
     </aside>
   );
 }
 
 export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
+  const defaultRoom = hotel.rooms[0];
   return (
     <div className="container-page section-spacing !pt-8">
       <DetailBreadcrumbs
@@ -150,7 +172,9 @@ export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
           </section>
 
           <section className="mt-8">
-            <h2 className="text-[18px] font-bold text-novin-text">اتاق‌های قابل رزرو</h2>
+            <h2 className="text-[18px] font-bold text-novin-text">
+              اتاق‌های قابل رزرو
+            </h2>
             <div className="mt-4 space-y-3">
               {hotel.rooms.map((room) => (
                 <article
@@ -162,7 +186,8 @@ export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
                       {room.name}
                     </h3>
                     <p className="mt-1 text-[13px] text-novin-text-secondary">
-                      ظرفیت {room.capacity.toLocaleString("fa-IR")} نفر · {room.board}
+                      ظرفیت {room.capacity.toLocaleString("fa-IR")} نفر ·{" "}
+                      {room.board}
                     </p>
                     <p className="mt-1 text-[12px] text-novin-orange">
                       {room.remaining.toLocaleString("fa-IR")} اتاق باقی مانده
@@ -172,7 +197,15 @@ export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
                     <p className="text-[18px] font-bold text-novin-purple">
                       {priceLabel(room.price)}
                     </p>
-                    <Button size="sm">رزرو اتاق</Button>
+                    <Link
+                      href={buildBookingHref("passengers", {
+                        type: "hotel",
+                        id: hotel.id,
+                        roomId: room.id,
+                      })}
+                    >
+                      <Button size="sm">رزرو اتاق</Button>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -184,11 +217,19 @@ export function HotelDetailDemo({ hotel }: { hotel: DemoHotel }) {
           price={hotel.priceFrom}
           note={`هر شب · ${hotel.board} · امکان لغو طبق قوانین اتاق`}
           cta="ادامه رزرو هتل"
+          href={buildBookingHref("passengers", {
+            type: "hotel",
+            id: hotel.id,
+            roomId: defaultRoom.id,
+          })}
         />
       </div>
 
       <div className="mt-10">
-        <Link href="/hotels" className="text-[14px] font-medium text-novin-purple hover:underline">
+        <Link
+          href="/hotels"
+          className="text-[14px] font-medium text-novin-purple hover:underline"
+        >
           ← بازگشت به لیست هتل‌ها
         </Link>
       </div>
@@ -209,7 +250,8 @@ export function TourDetailDemo({ tour }: { tour: DemoTour }) {
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div>
           <p className="text-[13px] font-medium text-novin-orange">
-            {tour.days.toLocaleString("fa-IR")} روز / {tour.nights.toLocaleString("fa-IR")} شب · حرکت {tour.departure}
+            {tour.days.toLocaleString("fa-IR")} روز /{" "}
+            {tour.nights.toLocaleString("fa-IR")} شب · حرکت {tour.departure}
           </p>
           <h1 className="mt-1 text-[28px] font-bold text-novin-text sm:text-[34px]">
             {tour.title}
@@ -281,11 +323,15 @@ export function TourDetailDemo({ tour }: { tour: DemoTour }) {
           price={tour.priceFrom}
           note="قیمت هر نفر · پرواز + هتل در پکیج‌های منتخب"
           cta="رزرو این تور"
+          href={buildBookingHref("passengers", { type: "tour", id: tour.id })}
         />
       </div>
 
       <div className="mt-10">
-        <Link href="/tours" className="text-[14px] font-medium text-novin-purple hover:underline">
+        <Link
+          href="/tours"
+          className="text-[14px] font-medium text-novin-purple hover:underline"
+        >
           ← بازگشت به لیست تورها
         </Link>
       </div>
@@ -360,7 +406,10 @@ export function StayDetailDemo({ stay }: { stay: DemoStay }) {
             <h2 className="text-[18px] font-bold text-novin-text">قوانین اقامت</h2>
             <ul className="mt-3 space-y-2 text-[14px] text-novin-text-secondary">
               {stay.rules.map((rule) => (
-                <li key={rule} className="rounded-xl bg-novin-bg-secondary px-4 py-3">
+                <li
+                  key={rule}
+                  className="rounded-xl bg-novin-bg-secondary px-4 py-3"
+                >
                   {rule}
                 </li>
               ))}
@@ -372,11 +421,15 @@ export function StayDetailDemo({ stay }: { stay: DemoStay }) {
           price={stay.priceFrom}
           note="هر شب · بدون پیش‌پرداخت در طرح‌های منتخب"
           cta="درخواست رزرو"
+          href={buildBookingHref("passengers", { type: "stay", id: stay.id })}
         />
       </div>
 
       <div className="mt-10">
-        <Link href="/stays" className="text-[14px] font-medium text-novin-purple hover:underline">
+        <Link
+          href="/stays"
+          className="text-[14px] font-medium text-novin-purple hover:underline"
+        >
           ← بازگشت به لیست اقامتگاه‌ها
         </Link>
       </div>
