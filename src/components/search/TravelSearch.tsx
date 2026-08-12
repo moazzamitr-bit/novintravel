@@ -91,14 +91,42 @@ export function TravelSearch({
         "relative z-30",
         embedded
           ? "mt-0"
-          : "-mt-[72px] sm:-mt-24 lg:-mt-[108px]",
+          : "-mt-[80px] sm:-mt-[104px] lg:-mt-[120px]",
       )}
     >
       <div className={embedded ? undefined : "container-page"}>
         <form
           onSubmit={handleSubmit}
-          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-white/70 bg-white/95 shadow-search backdrop-blur-md supports-[backdrop-filter]:bg-white/90"
+          className={cn(
+            "relative z-30 mx-auto max-w-[1320px] overflow-visible",
+            !embedded &&
+              "rounded-[24px] border border-white/80 bg-novin-surface/95 shadow-search backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/92",
+            embedded &&
+              "rounded-[20px] border border-novin-border bg-novin-surface shadow-card",
+          )}
         >
+          {/* Boarding-pass signature: ember route tab + side notches */}
+          {!embedded ? (
+            <>
+              <div
+                className="pointer-events-none absolute inset-y-6 right-0 w-[3px] rounded-l-full bg-gradient-to-b from-novin-orange via-[#ff7a3d] to-novin-purple"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -right-2.5 top-1/2 z-40 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-novin-bg shadow-[inset_0_0_0_1px_rgba(227,224,234,0.9)] lg:block"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -left-2.5 top-1/2 z-40 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-novin-bg shadow-[inset_0_0_0_1px_rgba(227,224,234,0.9)] lg:block"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-10 left-0 hidden w-px border-l border-dashed border-novin-border/90 lg:block"
+                aria-hidden
+              />
+            </>
+          ) : null}
+
           <div className="overflow-hidden rounded-t-[24px]">
             <SearchTabs
               value={state.serviceType}
@@ -111,7 +139,7 @@ export function TravelSearch({
 
           <div
             className={cn(
-              "relative z-40 space-y-4 overflow-visible p-4 transition-opacity duration-200 sm:p-5 lg:p-6",
+              "relative z-40 space-y-4 overflow-visible p-4 transition-opacity duration-200 sm:p-5 lg:p-6 lg:pr-7",
               isPending && "opacity-70",
             )}
           >
@@ -132,7 +160,7 @@ export function TravelSearch({
                       }
                       className="h-4 w-4 rounded border-novin-border text-novin-purple focus:ring-novin-purple"
                     />
-                    جستجوی پرواز مستقیم
+                    پرواز مستقیم
                   </label>
                   <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-[13px] text-novin-text-secondary">
                     <input
@@ -150,12 +178,12 @@ export function TravelSearch({
                       }
                       className="h-4 w-4 rounded border-novin-border text-novin-purple focus:ring-novin-purple"
                     />
-                    بلیط فقط رفت
+                    فقط رفت
                   </label>
                 </div>
               ) : (
                 <div className="text-[13px] text-novin-text-muted">
-                  جستجوی سریع و شفاف با قیمت واقعی
+                  قیمت شفاف، بدون هزینه پنهان
                 </div>
               )}
 

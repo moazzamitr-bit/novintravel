@@ -28,6 +28,7 @@ export function PopularDestinations() {
       aria-label="مقاصد محبوب پرواز"
     >
       <SectionHeader
+        eyebrow="پرواز"
         title="مقاصد محبوب پرواز"
         actionLabel="مشاهده همه"
         actionHref="/flights"
@@ -61,17 +62,17 @@ export function PopularDestinations() {
               href={destination.href}
               className="group w-[250px] shrink-0 focus-visible:outline-none sm:w-[280px]"
             >
-              <article className="overflow-hidden rounded-[18px] border border-novin-border bg-white transition-all duration-300 hover:-translate-y-[4px] hover:shadow-card group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35">
-                <div className="relative aspect-[16/10] overflow-hidden">
+              <article className="overflow-hidden rounded-[18px] border border-novin-border/90 bg-novin-surface shadow-[0_1px_0_rgba(26,20,36,0.03)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.2,0,0,1)] hover:-translate-y-[4px] hover:shadow-card group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35">
+                <div className="relative aspect-[16/10] overflow-hidden img-outline">
                   <Image
                     src={destination.image}
                     alt={destination.city}
                     fill
                     loading="lazy"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                     sizes="280px"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/45 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-novin-ink/50 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
                   <Badge
                     tone={destination.type === "domestic" ? "purple" : "sky"}
                     className="absolute right-3 top-3 shadow-soft"

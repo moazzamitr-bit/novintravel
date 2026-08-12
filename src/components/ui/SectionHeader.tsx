@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface SectionHeaderProps {
   title: string;
   description?: string;
+  eyebrow?: string;
   actionLabel?: string;
   actionHref?: string;
   className?: string;
@@ -12,6 +13,7 @@ interface SectionHeaderProps {
 export function SectionHeader({
   title,
   description,
+  eyebrow,
   actionLabel,
   actionHref,
   className,
@@ -24,11 +26,12 @@ export function SectionHeader({
       )}
     >
       <div className="max-w-2xl">
-        <h2 className="text-[24px] font-bold leading-tight text-novin-text sm:text-[30px] lg:text-[32px]">
+        {eyebrow ? <p className="eyebrow mb-2">{eyebrow}</p> : null}
+        <h2 className="display-title text-[26px] text-novin-text sm:text-[32px]">
           {title}
         </h2>
         {description ? (
-          <p className="mt-2 text-[15px] leading-8 text-novin-text-secondary">
+          <p className="mt-2.5 max-w-xl text-[15px] leading-8 text-novin-text-secondary">
             {description}
           </p>
         ) : null}
@@ -36,7 +39,7 @@ export function SectionHeader({
       {actionLabel && actionHref ? (
         <Link
           href={actionHref}
-          className="text-[14px] font-medium text-novin-purple transition-colors hover:text-novin-orange"
+          className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-novin-purple transition-colors duration-200 hover:text-novin-orange"
         >
           {actionLabel}
         </Link>

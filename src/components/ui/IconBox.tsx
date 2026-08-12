@@ -17,7 +17,7 @@ export function IconBox({ children, className, size = "md" }: IconBoxProps) {
   return (
     <div
       className={cn(
-        "inline-flex items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--color-novin-purple)_8%,white)] text-novin-purple",
+        "inline-flex items-center justify-center rounded-[14px] bg-[color-mix(in_srgb,var(--color-novin-purple)_7%,white)] text-novin-purple",
         sizes[size],
         className,
       )}

@@ -23,13 +23,17 @@ const icons = {
 export function WhyNovinTravel() {
   return (
     <section className="container-page section-spacing" aria-label="چرا نوین تراول؟">
-      <SectionHeader title="چرا نوین تراول؟" />
+      <SectionHeader
+        eyebrow="اعتماد"
+        title="چرا نوین تراول؟"
+        description="شفافیت قیمت، پشتیبانی واقعی و پوشش کامل خدمات سفر"
+      />
 
       {/*
         IMPORTANT: Metric values below come from data/homepage.ts placeholders.
         Replace with verified business data before production marketing use.
       */}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-3.5">
         {trustMetrics.map((metric) => {
           const Icon = icons[metric.icon];
           return (
@@ -38,7 +42,7 @@ export function WhyNovinTravel() {
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </IconBox>
               <div>
-                <p className="text-[18px] font-bold text-novin-purple sm:text-[20px]">
+                <p className="text-[18px] font-extrabold tracking-tight text-novin-purple sm:text-[20px]">
                   {metric.value}
                 </p>
                 <p className="mt-1 text-[12.5px] leading-6 text-novin-text-secondary">

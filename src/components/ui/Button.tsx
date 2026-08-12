@@ -13,24 +13,24 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-novin-orange text-white hover:bg-novin-orange-hover shadow-soft hover:-translate-y-0.5 hover:shadow-card",
+    "bg-novin-orange text-white shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_8px_20px_rgba(232,78,24,0.28)] hover:bg-novin-orange-hover hover:shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_10px_24px_rgba(232,78,24,0.34)]",
   secondary:
-    "bg-novin-purple text-white hover:bg-novin-purple-dark shadow-soft hover:-translate-y-0.5",
+    "bg-novin-purple text-white shadow-[0_1px_0_rgba(255,255,255,0.12)_inset,0_8px_20px_rgba(79,47,124,0.25)] hover:bg-novin-purple-dark",
   outline:
-    "bg-white text-novin-purple border border-[color-mix(in_srgb,var(--color-novin-purple)_28%,white)] hover:bg-novin-bg-secondary",
+    "bg-novin-surface text-novin-purple border border-novin-border hover:border-[color-mix(in_srgb,var(--color-novin-purple)_28%,white)] hover:bg-novin-bg-secondary",
   ghost: "bg-transparent text-novin-purple hover:bg-novin-bg-secondary",
   white:
-    "bg-white text-novin-purple border border-white/80 hover:bg-white/95 shadow-soft",
+    "bg-white text-novin-purple border border-white/85 shadow-soft hover:bg-white/95",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-9 px-3 text-sm rounded-[10px]",
-  md: "h-11 px-5 text-[15px] rounded-[11px]",
-  lg: "h-[52px] px-8 text-base rounded-xl min-w-[180px]",
+  sm: "h-9 px-3.5 text-[13px] rounded-[11px]",
+  md: "h-11 px-5 text-[14.5px] rounded-[12px]",
+  lg: "h-[52px] px-8 text-[15px] rounded-[14px] min-w-[180px]",
 };
 
 const baseClass =
-  "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-novin-purple/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 font-semibold transition-[background-color,box-shadow,transform,border-color,color] duration-200 ease-[cubic-bezier(0.2,0,0,1)] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-novin-purple/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:active:scale-100";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

@@ -34,7 +34,7 @@ export function SearchTabs({ value, onChange }: SearchTabsProps) {
     <div
       role="tablist"
       aria-label="نوع خدمات سفر"
-      className="flex h-[68px] items-stretch gap-1 overflow-x-auto border-b border-novin-border px-2 sm:px-4"
+      className="flex h-[64px] items-stretch gap-0.5 overflow-x-auto border-b border-novin-border/90 bg-[linear-gradient(180deg,rgba(247,245,249,0.9)_0%,rgba(255,255,255,0)_100%)] px-2 sm:px-4"
     >
       {tabs.map((tab) => {
         const Icon = tab.icon;
@@ -47,17 +47,24 @@ export function SearchTabs({ value, onChange }: SearchTabsProps) {
             aria-selected={selected}
             onClick={() => onChange(tab.id)}
             className={cn(
-              "relative flex min-w-[88px] shrink-0 items-center justify-center gap-2 px-3 text-[14px] font-medium transition-colors duration-200",
+              "relative flex min-w-[86px] shrink-0 items-center justify-center gap-2 px-3 text-[13.5px] font-medium transition-colors duration-200",
               selected
                 ? "text-novin-purple"
                 : "text-novin-text-secondary hover:text-novin-purple",
             )}
           >
-            <Icon className="h-[18px] w-[18px]" aria-hidden />
+            <Icon
+              className={cn(
+                "h-[17px] w-[17px] transition-transform duration-200",
+                selected && "-translate-y-px",
+              )}
+              strokeWidth={selected ? 2 : 1.75}
+              aria-hidden
+            />
             <span>{tab.label}</span>
             <span
               className={cn(
-                "absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-novin-purple transition-transform duration-200 origin-center",
+                "absolute inset-x-3 bottom-0 h-[2.5px] origin-center rounded-full bg-novin-orange transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)]",
                 selected ? "scale-x-100" : "scale-x-0",
               )}
             />
