@@ -36,7 +36,7 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
         transparent
-          ? "border-b border-transparent bg-transparent"
+          ? "border-b border-white/10 bg-[rgba(14,10,20,0.28)] backdrop-blur-md"
           : "border-b border-novin-border/60 bg-novin-surface/90 shadow-[0_1px_0_rgba(26,20,36,0.03)] backdrop-blur-xl supports-[backdrop-filter]:bg-novin-surface/80",
       )}
     >
@@ -46,8 +46,8 @@ export function Header() {
             <Link
               href="/"
               className={cn(
-                "relative flex h-11 w-[158px] shrink-0 items-center sm:h-[48px] sm:w-[180px]",
-                transparent && "brightness-0 invert",
+                "relative flex h-11 w-[158px] shrink-0 items-center rounded-xl sm:h-[48px] sm:w-[180px]",
+                transparent && "bg-white/95 px-2 shadow-soft",
               )}
               aria-label={siteConfig.name}
             >
@@ -56,7 +56,7 @@ export function Header() {
                 alt={siteConfig.name}
                 fill
                 priority
-                className="object-contain object-right"
+                className="object-contain object-right p-1"
                 sizes="180px"
               />
             </Link>
@@ -76,7 +76,7 @@ export function Header() {
                       transparent
                         ? active
                           ? "text-novin-orange"
-                          : "text-white/85 hover:text-white"
+                          : "text-white/88 hover:text-white"
                         : active
                           ? "text-novin-orange"
                           : "text-novin-text-secondary hover:text-novin-purple",
