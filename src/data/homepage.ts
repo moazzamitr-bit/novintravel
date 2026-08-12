@@ -153,13 +153,13 @@ export const popularDestinations: PopularDestination[] = [
     href: "/search/flights?origin=THR&destination=IST",
   },
   {
-    id: "tabriz",
-    city: "تبریز",
+    id: "isfahan",
+    city: "اصفهان",
     origin: "از تهران",
-    priceFrom: 2450000,
+    priceFrom: 2350000,
     type: "domestic",
-    image: "/images/destinations/tabriz.jpg",
-    href: "/search/flights?origin=THR&destination=TBZ",
+    image: "/images/destinations/isfahan-mosque.jpg",
+    href: "/search/flights?origin=THR&destination=IFN",
   },
   {
     id: "shiraz",
@@ -167,7 +167,7 @@ export const popularDestinations: PopularDestination[] = [
     origin: "از تهران",
     priceFrom: 2180000,
     type: "domestic",
-    image: "/images/destinations/shiraz.jpg",
+    image: "/images/destinations/shiraz-hafez.jpg",
     href: "/search/flights?origin=THR&destination=SYZ",
   },
   {
@@ -176,7 +176,7 @@ export const popularDestinations: PopularDestination[] = [
     origin: "از تهران",
     priceFrom: 3120000,
     type: "domestic",
-    image: "/images/destinations/kish.jpg",
+    image: "/images/mood/coastal-resort.jpg",
     href: "/search/flights?origin=THR&destination=KIH",
   },
   {
@@ -185,7 +185,7 @@ export const popularDestinations: PopularDestination[] = [
     origin: "از تهران",
     priceFrom: 1280000,
     type: "domestic",
-    image: "/images/destinations/mashhad.jpg",
+    image: "/images/destinations/mashhad-shrine.jpg",
     href: "/search/flights?origin=THR&destination=MHD",
   },
 ];

@@ -61,17 +61,17 @@ export function PopularDestinations() {
               href={destination.href}
               className="group w-[250px] shrink-0 focus-visible:outline-none sm:w-[280px]"
             >
-              <article className="overflow-hidden rounded-[18px] border border-novin-border bg-white transition-all duration-200 hover:-translate-y-[3px] hover:shadow-card group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35">
+              <article className="overflow-hidden rounded-[18px] border border-novin-border bg-white transition-all duration-300 hover:-translate-y-[4px] hover:shadow-card group-focus-visible:ring-2 group-focus-visible:ring-novin-purple/35">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={destination.image}
                     alt={destination.city}
                     fill
                     loading="lazy"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.08]"
                     sizes="280px"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/45 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
                   <Badge
                     tone={destination.type === "domestic" ? "purple" : "sky"}
                     className="absolute right-3 top-3 shadow-soft"

@@ -97,7 +97,7 @@ export function TravelSearch({
       <div className={embedded ? undefined : "container-page"}>
         <form
           onSubmit={handleSubmit}
-          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-novin-border bg-white shadow-search"
+          className="relative z-30 mx-auto max-w-[1320px] overflow-visible rounded-[24px] border border-white/70 bg-white/95 shadow-search backdrop-blur-md supports-[backdrop-filter]:bg-white/90"
         >
           <div className="overflow-hidden rounded-t-[24px]">
             <SearchTabs

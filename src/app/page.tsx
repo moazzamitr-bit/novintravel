@@ -1,6 +1,7 @@
 import { AITravelAssistant } from "@/components/homepage/AITravelAssistant";
 import { AppDownload } from "@/components/homepage/AppDownload";
 import { CorporateTravel } from "@/components/homepage/CorporateTravel";
+import { DestinationSpotlight } from "@/components/homepage/DestinationSpotlight";
 import { FooterTrust } from "@/components/homepage/FooterTrust";
 import { Hero } from "@/components/homepage/Hero";
 import { InstallmentTravel } from "@/components/homepage/InstallmentTravel";
@@ -66,6 +67,7 @@ export default function HomePage() {
       <TravelSearch />
       <QuickServices />
       <PromoBanners />
+      <DestinationSpotlight />
       <PopularDestinations />
       <AITravelAssistant />
       <InstallmentTravel />

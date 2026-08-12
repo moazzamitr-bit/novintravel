@@ -23,7 +23,11 @@
   --radius-container: 22px;
   --max-width-page: 1400px;
   --animate-fade-up: fade-up 0.7s ease-out both;
-  --animate-hero-ken: hero-ken 18s ease-out both;
+  --animate-hero-ken: hero-ken 8s ease-out both;
+  --animate-hero-ken-alt: hero-ken-alt 8s ease-out both;
+  --animate-hero-ken-pan: hero-ken-pan 8s ease-out both;
+  --animate-hero-sheen: hero-sheen 10s ease-in-out infinite;
+  --animate-hero-progress: hero-progress linear both;
 }
 
 @keyframes fade-up {
@@ -39,10 +43,59 @@
 
 @keyframes hero-ken {
   from {
-    transform: scale(1.06);
+    transform: scale(1.08) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1);
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-ken-alt {
+  from {
+    transform: scale(1.1) translate3d(1.5%, 0, 0);
+  }
+  to {
+    transform: scale(1.02) translate3d(-0.5%, 0, 0);
+  }
+}
+
+@keyframes hero-ken-pan {
+  from {
+    transform: scale(1.09) translate3d(-1%, 0.5%, 0);
+  }
+  to {
+    transform: scale(1.01) translate3d(1%, -0.5%, 0);
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  100% {
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 210, 160, 0.12) 45%,
+      transparent 70%
+    );
+    transform: translateX(-8%);
+  }
+  50% {
+    background: linear-gradient(
+      115deg,
+      transparent 25%,
+      rgba(255, 210, 160, 0.18) 50%,
+      transparent 75%
+    );
+    transform: translateX(8%);
+  }
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 
@@ -94,5 +147,21 @@
 
   .animate-hero-ken {
     animation: var(--animate-hero-ken);
+  }
+
+  .animate-hero-ken-alt {
+    animation: var(--animate-hero-ken-alt);
+  }
+
+  .animate-hero-ken-pan {
+    animation: var(--animate-hero-ken-pan);
+  }
+
+  .animate-hero-sheen {
+    animation: var(--animate-hero-sheen);
+  }
+
+  .animate-hero-progress {
+    animation: var(--animate-hero-progress);
   }
 }
